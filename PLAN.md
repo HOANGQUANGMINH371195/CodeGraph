@@ -1641,6 +1641,9 @@ checklist này với nhau để tính phần trăm tiến độ.
   string conversions carry `must_use`; domain tests/fmt pass ngày 2026-09-13.
   ClaimState parser mô tả exact spelling và giới hạn metadata; source-gate:
   [receipt](/home/minh/projects/project-graph-agent/reports/w13-claim-parser-docs-2026-09-13.md).
+  TargetHeadVerification constructor/accessors đã document validation và giữ
+  authentication ở application boundary; domain tests/fmt pass.
+  [Receipt](/home/minh/projects/project-graph-agent/reports/w13-target-verification-docs-2026-09-13.md).
   Các checks local đã chạy; chưa có strict lint/portable release gate.
   Các batch docs/accessor sau receipt bốn constructor thiếu source-gate trước
   patch nhất quán; không đánh dấu tuân thủ hồi tố.

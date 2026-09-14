@@ -12,6 +12,11 @@ pub struct TargetHeadVerification {
 }
 
 impl TargetHeadVerification {
+    /// Constructs a target observation after checking task and snapshot equality.
+    ///
+    /// # Errors
+    /// Returns an error for invalid task/project data, a negative timestamp,
+    /// invalid verifier text, or a target differing from the task snapshot.
     pub fn new(
         task: TaskSpec,
         observed_target: ProjectRef,
@@ -37,15 +42,19 @@ impl TargetHeadVerification {
         })
     }
 
+    #[must_use]
     pub fn task(&self) -> &TaskSpec {
         &self.task
     }
+    #[must_use]
     pub fn observed_target(&self) -> &ProjectRef {
         &self.observed_target
     }
+    #[must_use]
     pub fn observed_at_ms(&self) -> i64 {
         self.observed_at_ms
     }
+    #[must_use]
     pub fn verifier_version(&self) -> &str {
         &self.verifier_version
     }
