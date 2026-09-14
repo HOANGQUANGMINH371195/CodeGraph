@@ -2,4 +2,4 @@
 /.harness/
 *.db-wal
 *.db-shm
-
+/outsource/

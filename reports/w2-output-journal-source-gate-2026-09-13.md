@@ -1,7 +1,9 @@
 # Durable RPC output journal: source gate and implementation contract
 
-Status: source study completed for storage ordering; implementation outstanding.
-This follows w2-restart-gap-review-2026-09-13.md, not a recovery completion claim.
+Status: bounded manifest, CAS staging, metadata-first registration, verified
+reopen/replay and selected SIGKILL boundaries implemented. Full recovery
+acceptance remains open. This follows w2-restart-gap-review-2026-09-13.md;
+the source gates and results below preserve the sequence of implementation.
 
 ## Current source study
 
@@ -69,6 +71,110 @@ before patch; full CAS/journal durability remains outside this protocol slice.
   orphan-process containment. This document adds no passing acceptance evidence.
 
 ## Manifest implementation result
+
+Discovery index source gate (2026-09-13, before patch): current V1-V17 SQL
+applied to an in-memory SQLite probe gives `SEARCH artifacts USING COVERING
+INDEX artifacts_scope (id>?)` for the actual page query. Scope predicates are
+not search keys. Reread OpenDev sqlite_store.rs CREATE_INDEXES and tests at
+d32c660e4eed1a8e988d1fd58da88e41ba641d08: this store is a stub and tests inspect
+strings, so it supplies no runtime index evidence. Read alternative ICM
+schema.rs topic index/init migration ordering, store/memory.rs::get_by_topic and
+store/tests/memory.rs::test_search_fts result/topic assertions at
+2ac87e8fc6c6fd0b5a6dc6d910446d95c65d3f42 (Apache-2.0 license checked).
+Adopt predicate-aligned indexing and preserving legacy data before new indexes;
+do not copy unbounded list_all or count-only index tests. Add V18 index on
+(project, graph_version, id), preserving every applied migration. Product
+artifact fixture upgrades a populated V17 database, compares all old migration
+records and artifact descriptors, then asserts actual production query plan uses
+scope equality and ID range without temporary sort. Existing fresh-history
+counts advance to 18. This proves access-path selection and upgrade preservation,
+not wall-clock latency, JSON allocation or whole-product performance savings.
+
+Scoped discovery source gate (2026-09-13, before patch): reread OpenDev
+SnapshotPersistence::find_incomplete_sessions/load_from_path and its incomplete
+session test at d32c660e4eed1a8e988d1fd58da88e41ba641d08 (MIT). Adopt enumeration
+followed by validation, avoid unbounded directory collection and ignored parse
+failures. Product Store::artifact and its immutable restart/scope test validate
+descriptor identity and analysis-run linkage; reuse that verifier for every
+returned candidate. Add a separate read-only ArtifactDiscoveryRepository port
+with exact ProjectRef/graph scope, exclusive artifact-ID cursor and page size
+1..100. SQL lives in a query file; return all kinds so corrupt descriptors cannot
+hide behind a JSON-kind filter. Consumers filter manifest kind then use existing
+exact-launch/hash/output verification; discovery alone grants no replay/spawn
+authority. Results/page size are bounded, not SQLite scan work or descriptor
+JSON allocation. Test sorted cursor pages, empty tail, foreign scope, invalid
+limits, and restart. Replace the fresh recovery fixture's hardcoded manifest-ID
+lookup with bounded paging, preserving all eight SIGKILL outcomes. Automatic
+host-wide scheduling, candidate ambiguity policy and database work bounds remain
+separate; no filesystem scan or new migration is needed for this port.
+
+Partial CAS source gate (2026-09-13, before patch): root reread OpenDev
+state_snapshot.rs save/load and test_save_and_load/test_load_nonexistent at
+d32c660e4eed1a8e988d1fd58da88e41ba641d08 (MIT license already checked).
+Adopt durable-state reopen assertions, avoid corruption-as-absence and treating
+roundtrip as SIGKILL evidence. Product stage_registered_journal/write_journal
+currently pre-register manifest, write stdout, stderr, manifest in that order;
+the current kill helper covers only the last CAS boundary. Generalize its
+delegating writer to park before first write and after each stream write.
+Parent kills/reaps and new recovery process checks exact surviving blobs,
+retained descriptor, missing manifest, unchanged events and absent terminal.
+Parent repeats refusal independently and asserts one original RPC start.
+Missing journal bytes cannot be reconstructed from test oracle or a new RPC;
+these cases prove safe incomplete recovery, not successful publication.
+
+Metadata-first registration source gate (2026-09-13, before production patch):
+root read OpenDev file_checkpoint.rs capture_file/save_manifest/load_manifest
+and file_checkpoint_tests.rs::test_manifest_persistence_and_reload at the same
+MIT revision above. Adopt descriptor persistence and exact reload, avoid its
+best-effort errors and rename-only durability assumptions. No matching upstream
+CAS/ledger recovery exists in those paths. Product application/artifact.rs
+ingest_artifact and writer_success_is_independently_checked_before_returning_receipt,
+Store::record_artifact, V5 metadata-only contract, source/artifact.rs ingest,
+and publication::failed_stderr_preserves_verified_stdout_and_retries_without_spawning_again
+show the existing metadata-first contract. Adapt stage_registered_journal to
+encode once, register the exact run/manifest descriptor before any CAS writes,
+then write/verify streams and manifest. Extract shared private preparation/write
+helpers so registered and unregistered staging use identical bytes/descriptors.
+Failure leaves explicit unverified metadata; reopening must still verify all
+bytes, never recreate an execution capability. Stable host-selected ID remains
+required; no new schema or automatic discovery claim. Test incomplete registered
+manifest after writer failure, exact retry after reopen, and SIGKILL after
+manifest CAS publication before staging returns. Luna independently reviewed
+these invariants read-only; requested gpt-5.6-luna, effective model unobservable
+in worker tools, no savings claim. Root reviewed its evidence in current source.
+
+Fresh-process result: all four publisher boundaries recovered via a separately
+spawned/reaped helper, followed by parent DB/CAS verification. Foundation exit 0
+in validation/foundation-journal-fresh-process-2026-09-13.log; fmt/diff checks pass.
+
+Fresh recovery process source gate (2026-09-13, before patch): reread OpenDev
+SnapshotPersistence save/load/find_incomplete_sessions and roundtrip/missing/
+incomplete tests at d32c660e4eed1a8e988d1fd58da88e41ba641d08 (MIT, previously
+checked). Adopt independently reopened persistence and exact value comparison;
+the upstream tests do not prove process isolation and silently ignore invalid
+snapshots, so do not reuse that failure policy. Reread product replay_rpc_journal
+and rpc_terminal_kill_tests owned child lifecycle. Extend the existing four
+publisher death boundaries with a new executable recovery helper: only DB/CAS
+reopen and replay, no prepare/finish/spawn API. Pass root and stage through a
+cleared environment; existing fixture JSON supplies expected launch identity as
+test oracle only. Parent verifies partial ledger before helper, waits/reaps with
+a deadline, then independently checks exact receipt, one new terminal event
+unless already committed, idempotence and unchanged RPC start count.
+
+Intermediate ledger SIGKILL source gate (2026-09-13, before patch): reread
+OpenDev state_snapshot.rs::save/load_from_path and state_snapshot_tests.rs
+roundtrip/missing tests at d32c660e4eed1a8e988d1fd58da88e41ba641d08;
+MIT license checked again. Adopt reopen-and-compare exact persisted state;
+avoid treating corruption as absence or roundtrip as process-death evidence.
+Product rpc_output.rs::replay_rpc_journal writes run, stdout metadata, stderr
+metadata, then terminal; publication.rs::FailReceipt exercises ambiguous final
+commit but not process death between output metadata commits. Extend the owned
+publisher with a delegating repository that parks immediately after successful
+stdout/stderr metadata commits in the real replay routine. Parent SIGKILL/reap
+must observe the exact partial ledger, recover from the registered manifest,
+retain receipt uncertainty, preserve ordered event replay and one RPC start.
+This fills two ledger boundaries only; pre-handle CAS deaths/discovery and
+power-loss remain open. No upstream code copied or reference files changed.
 
 Outbox assertion pre-patch: read Store pending_events/acknowledge_event and
 outbox_replays_after_restart_with_independent_ordered_consumers. ICM memory.rs
@@ -230,3 +336,100 @@ consumer stays empty and an independent consumer sees the same history.
 pending_events reads events, not event_outbox: equality alone is not a direct
 outbox row-count assertion. This proves ordered acknowledgement for this fixture,
 not exhaustive outbox integrity or power-loss behavior.
+
+Intermediate ledger result: the owned publisher now pauses inside the real
+replay routine after stdout or stderr metadata registration returns successfully.
+Parent confirmed signal 9 and reaped each publisher, reopened SQLite/CAS,
+asserted exact present/absent output metadata and absent terminal before replay,
+then recovered the exact receipt and repeated the existing event/cursor and
+single-RPC-start assertions. All four stages (handle, stdout, stderr, terminal)
+passed the focused test. Foundation exited 0; log:
+`validation/foundation-journal-intermediate-2026-09-13.log`. Initial sandbox
+attempt failed at cargo metadata with EPERM; the authorized rerun passed.
+`scripts/with-local-tools cargo fmt --all -- --check` and diff whitespace check
+passed. PLAN copies compared equal after synchronization. No production code
+changed. Pre-handle CAS/registration boundaries, automatic discovery, fresh
+recovery-process acceptance and power loss remain open; parent-process reopen
+does not prove every restart requirement.
+
+Metadata-first result: production now registers the exact manifest descriptor
+before stream/manifest CAS writes, using one encoded buffer for registration
+and publication. This supersedes the earlier CAS-before-handle registration
+ordering. Missing-content metadata remains unverified. A real CAS/SQLite test
+injects stderr failure, reopens the store, finds the manifest descriptor, verifies
+the surviving stdout, rejects replay with missing manifest and no terminal/event
+changes, then retries the same preparation and recovers without another RPC.
+The publisher kill matrix now includes manifest-CAS-committed before staging
+returns, plus handle and two output-metadata commits and terminal commit.
+All five boundaries recover in a new helper process; parent verifies exact
+receipt, event prefix/count, ordered cursor replay and a single RPC start.
+Focused journal tests: 3 pass, 2 helpers ignored by the outer test runner (the
+kill test invokes them explicitly). Foundation exited 0; log:
+`validation/foundation-journal-metadata-first-2026-09-13.log`. Fmt and whitespace
+checks passed. Luna read-only review found no evident correctness/trust
+regression; root checked the current diff and test results. No measured fleet
+token savings or effective-model confirmation is claimed.
+
+Remaining: stream-CAS and pre-registration process-death boundaries, full
+automatic discovery without a known host-selected ID, recovery of output bytes
+never durably written, orphan process containment and power-loss. The fresh
+recovery-process gap above is now covered for these five boundaries only.
+
+Partial CAS result: the owned publisher now also parks after manifest metadata
+registration before the first CAS write, after stdout CAS, and after stderr CAS.
+All eight stages passed the focused SIGKILL test. For the three new incomplete
+stages, the fresh recovery helper verifies exact surviving output hashes or
+NotFound for unwritten blobs, confirms the manifest is absent, and refuses
+replay without terminal/event changes. Parent independently repeats these
+assertions after recovery exits and checks the original RPC started once.
+Test oracle descriptors are used only for assertions, never to recreate missing
+manifest/output bytes. Existing five complete-publication stages still replay
+and preserve exact receipt/event/cursor semantics.
+Foundation exited 0; log validation/foundation-journal-partial-cas-2026-09-13.log.
+Fmt and diff whitespace checks passed; PLAN copies synchronized. No production
+code changed in this follow-up. This narrows the earlier stream-CAS coverage gap
+to death inside CAS operations and before descriptor registration; missing-byte
+reconstruction, automatic discovery, containment and power-loss remain open.
+
+Scoped discovery result: ArtifactDiscoveryRepository and Store now enumerate
+exact snapshot/graph metadata by exclusive ID cursor, with page size 1..100.
+Each selected ID uses the existing descriptor/run linkage validation; corrupt
+descriptor aborts the page. Two store tests passed for sorted pages/restart,
+empty tail, foreign scope, invalid limits and isolated descriptor corruption.
+The fresh recovery helper scans one item/page within a ten-page fixture budget,
+selects its single manifest candidate, then verifies/replays through the existing
+exact-launch path. All eight SIGKILL stages passed; it no longer looks up the
+manifest by hardcoded ID. Foundation exited 0 in
+validation/foundation-artifact-discovery-2026-09-13.log; fmt/diff checks passed.
+The initial focused compile needed a missing TaskRepository trait import in the
+new test; corrected before the passing focused and foundation runs.
+
+Luna read-only review and root inspection found no correctness/trust regression.
+Requested worker model remains gpt-5.6-luna, effective runtime model not exposed
+by worker tools; no fleet savings claim. Query output is bounded, but existing
+ID-leading indexes may scan many unrelated rows and validation is N+1. A
+scope-leading index, DB/descriptor work budgets, production traversal scheduling,
+multiple-candidate policy and concurrency reconciliation remain open. This is
+scoped candidate discovery plus fixture integration, not autonomous host-wide
+recovery. PLAN copies synchronized; applied migrations unchanged.
+
+Discovery index validation: V18 adds only the scope-leading covering index;
+V1-V17 files are unchanged. Populated V17 upgrade/reopen test passed and the
+actual page query selects artifacts_discovery_scope with project/graph equality
+and ID range, without a temporary sort. First foundation run failed two stale
+schema-history count assertions (observed 18, expected 17) in grouped-rollback
+and concurrent-first-open tests; their counts were corrected without altering
+rollback or concurrency assertions. Original failure log retained at
+validation/foundation-discovery-index-2026-09-13.log.
+Final foundation rerun exited 0; log:
+validation/foundation-discovery-index-final-2026-09-13.log. Fmt/diff checks pass,
+PLAN copies compare equal. Upgrade tests retain all historical checksums/data;
+the index narrows candidate lookup to its scope. N+1 descriptor validation,
+descriptor byte limits, host deadlines and production traversal/ambiguity policy
+remain open; this is query-plan evidence, not a latency or fleet-cost benchmark.
+
+Ambiguity follow-up: a same-scope fixture with two manifest descriptors is
+returned intact by `artifacts_after`; recovery's exact-one assertion therefore
+fails closed before replay. The four discovery tests and the full foundation
+rerun remain green. This records the caller policy used by the fixture, not a
+production lease or stale-journal cleanup mechanism.

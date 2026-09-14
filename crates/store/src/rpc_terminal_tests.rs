@@ -354,7 +354,7 @@ fn v12_upgrade_preserves_registered_prerequisites_and_history_without_terminal_f
             .get_applied_migrations(&mut store.0)
             .unwrap();
         assert_eq!(&after[..12], before.as_slice());
-        assert_eq!(after.len(), 17);
+        assert_eq!(after.len(), 18);
         assert_eq!(counts(&store).0, 0);
         assert_eq!(store.events(0, 100).unwrap(), events);
         let actual: String = store

@@ -13,6 +13,73 @@ use std::io::{self, Read};
 mod journal_kill;
 
 #[test]
+fn incomplete_registered_journal_refuses_replay_then_retries_exact_preparation() {
+    let root = tempfile::tempdir().unwrap();
+    let db = root.path().join("db");
+    let mut store = Store::open(&db).unwrap();
+    let guard = finish(root.path(), &mut store, "rpc-context");
+    let terminal = guard.get();
+    let blobs = blobs(root.path(), terminal);
+    let prepared = terminal
+        .prepare_receipt(run(terminal), "out".into(), "err".into(), 100, 16384)
+        .unwrap();
+    let before = store.events(0, 100).unwrap();
+    assert!(
+        prepared
+            .stage_registered_journal(
+                &mut store,
+                &FailStderr(&blobs),
+                "journal".into(),
+                65536,
+                16384
+            )
+            .is_err()
+    );
+    drop(store);
+    let mut store = Store::open(&db).unwrap();
+    let launch = terminal.spawn_observation().launch();
+    let manifest = store
+        .artifact(
+            "journal",
+            launch.execution_snapshot(),
+            launch.task().graph_version(),
+        )
+        .unwrap()
+        .unwrap();
+    assert_eq!(
+        blobs.open_artifact(&manifest).err().unwrap().kind(),
+        io::ErrorKind::NotFound
+    );
+    graph_application::verify_artifact(&blobs, prepared.receipt().stdout().unwrap(), 16384)
+        .unwrap();
+    assert!(
+        graph_execution::replay_rpc_journal(&mut store, &blobs, &manifest, launch, 65536, 16384)
+            .is_err()
+    );
+    assert!(store.rpc_terminal_receipt(launch).unwrap().is_none());
+    assert_eq!(store.events(0, 100).unwrap(), before);
+    let retried = prepared
+        .stage_registered_journal(&mut store, &blobs, "journal".into(), 65536, 16384)
+        .unwrap();
+    assert_eq!(retried, manifest);
+    assert!(
+        graph_execution::replay_rpc_journal(&mut store, &blobs, &manifest, launch, 65536, 16384)
+            .unwrap()
+    );
+    assert_eq!(
+        store.rpc_terminal_receipt(launch).unwrap().as_ref(),
+        Some(prepared.receipt())
+    );
+    assert_eq!(
+        std::fs::read_to_string(root.path().join("cwd/rpc-starts"))
+            .unwrap()
+            .lines()
+            .count(),
+        1
+    );
+}
+
+#[test]
 fn journal_stages_verified_streams_then_manifest_without_ledger_changes() {
     let root = tempfile::tempdir().unwrap();
     let mut store = Store::open(root.path().join("db")).unwrap();

@@ -63,6 +63,29 @@ là chưa viết code. W0 và W1 đang triển khai; các track còn lại chưa
 
 ### 0.1. Những phần đã kiểm chứng
 
+- [x] **W2 partial — scoped artifact discovery:** read-only port phân trang
+  theo exact ProjectRef/graph và exclusive ID cursor, page size 1..100; mỗi
+  descriptor được kiểm lại bằng artifact lookup hiện có. Restart/pagination/
+  foreign-scope/invalid-limit/corrupt-descriptor tests pass. Recovery helper tìm
+  manifest qua các trang thay vì biết ID trước; đủ 8 SIGKILL stages pass, gồm
+  từ chối journal ghi dở. Fmt pass; foundation result tại
+  [receipt](/home/minh/projects/project-graph-agent/reports/w2-output-journal-source-gate-2026-09-13.md).
+  Chưa production recovery scheduler/ambiguity policy; page cap không giới hạn
+  SQLite scan time hoặc tổng bytes descriptor.
+  Follow-up V18 thêm covering index `(project, graph_version, id)`. Test upgrade
+  từ V17 có artifact giữ exact descriptor và 17 migration records cũ sau hai
+  lần reopen; query plan dùng equality theo scope và ID range, không sort tạm.
+  Focused test/fmt pass; foundation result ghi trong cùng receipt. Không phải
+  benchmark latency hoặc giới hạn tổng DB/JSON work.
+
+- [x] **W2 journal metadata-first:** đăng ký exact manifest descriptor trước
+  CAS, giữ contract metadata chưa chứng minh bytes. Test lỗi stderr kiểm
+  descriptor còn sau reopen, replay từ chối manifest thiếu, retry cùng preparation
+  thành công. SIGKILL sau manifest CAS phục hồi bằng tiến trình mới, không spawn
+  lại RPC; focused journal tests và fmt pass. Foundation result ghi trong
+  [receipt](/home/minh/projects/project-graph-agent/reports/w2-output-journal-source-gate-2026-09-13.md).
+  Host vẫn phải biết stable manifest ID; chưa auto-discovery hoặc full W2.
+
 - [x] **W2 required sandbox gate:** `sh scripts/validate-sandbox.sh` bật
   GRAPH_REQUIRE_SANDBOX, thiếu backend hoặc non-Linux thì fail. Shared
   discovery policy có required-failure/optional-skip tests; gate chạy thật
@@ -1572,45 +1595,66 @@ checklist này với nhau để tính phần trăm tiến độ.
   thử claim lại; đọc thấy có/không có claim đều chưa chứng minh process state.
   Đã lưu spawn-stage observation V12 và nối host fixture, giữ Child khi ghi DB lỗi.
   Observation đã có trong inspection/CLI nhất quán (§0.1). Terminal RPC/output
-  receipt và staged publication đã có; còn durable prepared-output journal và
+  receipt, staged publication và registered output journal đã có; còn đầy đủ
+  crash-boundary acceptance và
   reconciliation khi crash giữa claim/spawn/attach, giữ pending uncertain, không
   tự retry/reset claim. Production vẫn cần resolve approval do host chọn và bind
   toàn bộ spec với quyền hiện tại; claim=true hoặc string approval_id không cấp
   quyền. Chưa đóng race final cancellation/expiry check → spawn, filesystem TOCTOU
   hoặc containment. Phạm vi trước gate vẫn là owned fixtures, không native dispatch.
   [Current restart gap review](/home/minh/projects/project-graph-agent/reports/w2-restart-gap-review-2026-09-13.md)
-  phân biệt replay publication không spawn với orphan-process recovery; chưa
-  triển khai journal hoặc nhận lại process từ PID.
+  phân biệt replay publication không spawn với orphan-process recovery;
+  journal không cấp quyền nhận lại process từ PID.
   Source-gate cho thứ tự ghi CAS → manifest, bounded reopen và replay không
   spawn đã ghi tại [journal source study](/home/minh/projects/project-graph-agent/reports/w2-output-journal-source-gate-2026-09-13.md).
-  Code/kill-test journal vẫn mở; không dùng rename-only snapshot làm bằng chứng
+  Full journal acceptance vẫn mở; không dùng rename-only snapshot làm bằng chứng
   durability hoặc chuyển corruption thành missing.
   Protocol `rpc_journal` đã có manifest v1 với exact-launch binding, byte cap
-  trước decode và cumulative output cap; chưa có storage/reopen journal hoặc
-  crash recovery. Validation ghi trong journal source-study receipt.
+  trước decode và cumulative output cap. Storage/reopen và bounded crash fixtures
+  mô tả bên dưới; validation ghi trong journal source-study receipt.
   `decode_reader` giới hạn đọc manifest ở cap+1 trước parse và giữ lỗi I/O;
   caller vẫn phải chọn root, kiểm regular file và áp deadline.
   Encode manifest dùng capped writer, không tăng độ dài buffer vượt cap trong
   lúc serialize; không phải giới hạn tổng allocation của converter/serializer.
   PreparedRpcReceipt::stage_journal đã ghi/verify stdout, stderr rồi manifest
   qua CAS port, không ghi ledger/spawn; caller phải giữ manifest descriptor.
-  Durable discovery/reopen, replay ledger và kill-test vẫn mở.
+  Automatic discovery và pre-handle crash recovery vẫn mở.
   `reopen_rpc_journal` đọc manifest có cap, kiểm hash trên cùng buffer được
   parse, đối chiếu scope/run và verify output; trả metadata lịch sử. Durable
-  handle discovery, replay ledger và SIGKILL acceptance vẫn mở.
+  automatic handle discovery và full SIGKILL acceptance vẫn mở.
   Replay ledger từ journal đã có `replay_rpc_journal`: kiểm bytes và exact
   spawn/terminal, ghi lại run/artifact/receipt idempotent; không có claim/spawn
-  port. Durable discovery và SIGKILL acceptance vẫn mở.
+  port. Automatic discovery và full SIGKILL acceptance vẫn mở.
   Test replay từ chối manifest hỏng, stderr thiếu và terminal hợp lệ nhưng
   khác receipt đã commit; kiểm event history và receipt gốc không đổi.
-  `stage_registered_journal` lưu manifest handle vào artifact ledger sau CAS;
+  `stage_registered_journal` lưu manifest handle vào artifact ledger trước CAS;
+  lỗi ghi có thể để lại metadata chưa có bytes, replay vẫn phải verify toàn bộ.
   lookup theo ID host chọn + snapshot sau reopen rồi replay đã có fixture.
   Chưa auto-discovery hoặc crash acceptance tại từng boundary.
-  Owned publisher SIGKILL fixture đã bao phủ handle-committed và
-  terminal-committed: reopen/replay không spawn thêm, giữ exact receipt/event
+  Owned publisher SIGKILL fixture đã bao phủ manifest-CAS-committed, handle-committed,
+  stdout-metadata-committed, stderr-metadata-committed và terminal-committed:
+  kiểm exact partial ledger trước replay trong tiến trình recovery mới, không
+  spawn thêm RPC, giữ exact receipt/event
   replay. Bổ sung ordered outbox acknowledgement, cursor sau reopen và consumer
   độc lập; focused test/fmt đạt. Chưa chứng minh toàn bộ outbox row integrity.
-  Chưa kill giữa từng CAS/ledger write, auto-discovery hoặc power-loss.
+  Follow-up intermediate ledger: focused test và fmt pass ngày 2026-09-13;
+  foundation result ghi trong journal source-study receipt.
+  Follow-up metadata-first khép khoảng hở CAS đã đủ nhưng chưa đăng ký handle;
+  vẫn cần stable ID host chọn. SIGKILL sau descriptor registration trước CAS,
+  sau stdout CAS và sau stderr CAS đã có negative fixtures: tiến trình recovery
+  mới và parent đều kiểm exact surviving blobs, descriptor còn, manifest thiếu,
+  replay từ chối, không terminal/event mới và không spawn lại RPC. Focused test
+  và fmt pass; foundation result ghi trong journal receipt. Đây là safe incomplete
+  accounting, không phải khôi phục bytes chưa ghi. Chưa kill bên trong từng CAS
+  write/trước metadata registration, auto-discovery hoặc power-loss.
+  Follow-up có ArtifactDiscoveryRepository::artifacts_after cho scoped paging;
+  recovery fixture đã tìm journal không cần manifest ID, vẫn exact-launch/hash
+  verify trước replay. Host-wide discovery scheduling và ambiguity policy chưa
+  triển khai. V18 đã thêm scope-leading index với query-plan/upgrade regression;
+  deadline, tổng descriptor bytes và production scan budget vẫn mở.
+  Regression ambiguity có hai manifest cùng scope; discovery trả cả hai và
+  recovery fail-closed trước replay. Đây là caller policy của fixture, chưa là
+  lease phục hồi đồng thời hay cleanup journal cũ.
 
 - [ ] W0: full suite CodeGraph local patch đã hết lỗi (4.629 pass/0 fail),
   không xoá baseline gốc 16 fail. Tiếp tục kiểm ContextEnvelope budget

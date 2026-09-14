@@ -1,5 +1,5 @@
 use crate::{Store, StoreError};
-use graph_application::{AnalysisRepository, ArtifactRepository};
+use graph_application::{AnalysisRepository, ArtifactDiscoveryRepository, ArtifactRepository};
 use graph_domain::{Artifact, ProjectRef};
 use rusqlite::{OptionalExtension, TransactionBehavior, params};
 
@@ -106,9 +106,48 @@ impl ArtifactRepository for Store {
     }
 }
 
+impl ArtifactDiscoveryRepository for Store {
+    type Error = StoreError;
+
+    fn artifacts_after(
+        &self,
+        project: &ProjectRef,
+        graph_version: &str,
+        after_id: &str,
+        limit: usize,
+    ) -> Result<Vec<Artifact>, StoreError> {
+        project
+            .validate()
+            .map_err(|_| StoreError::Invalid("invalid project scope"))?;
+        if graph_version.trim().is_empty() || !(1..=100).contains(&limit) {
+            return Err(StoreError::Invalid(
+                "artifact discovery requires graph scope and page size 1..100",
+            ));
+        }
+        let project_json = serde_json::to_string(&graph_protocol::ProjectRef::from(project))?;
+        let mut statement = self
+            .0
+            .prepare(include_str!("sql/select_artifact_page.sql"))?;
+        let ids = statement
+            .query_map(
+                params![project_json, graph_version, after_id, limit as i64],
+                |row| row.get::<_, String>(0),
+            )?
+            .collect::<Result<Vec<_>, _>>()?;
+        ids.into_iter()
+            .map(|id| {
+                self.artifact(&id, project, graph_version)?.ok_or_else(|| {
+                    StoreError::Corrupt("discovered immutable artifact is missing".into())
+                })
+            })
+            .collect()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+    use graph_application::TaskRepository;
     use graph_domain::{AnalysisRun, ArtifactProtection, ArtifactRetention};
 
     fn run() -> AnalysisRun {
@@ -143,6 +182,169 @@ mod tests {
             ArtifactProtection::Unreviewed,
         )
         .unwrap()
+    }
+
+    #[test]
+    fn v17_upgrade_preserves_artifacts_and_seeks_discovery_scope() {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("v17-discovery.db");
+        let mut db = rusqlite::Connection::open(&path).unwrap();
+        crate::embedded::migrations::runner()
+            .set_target(refinery::Target::Version(17))
+            .run(&mut db)
+            .unwrap();
+        let before = crate::embedded::migrations::runner()
+            .get_applied_migrations(&mut db)
+            .unwrap();
+        let mut old = Store(db);
+        old.record_analysis_run(&run()).unwrap();
+        let original = artifact();
+        old.record_artifact(&original).unwrap();
+        drop(old);
+        for _ in 0..2 {
+            let mut store = Store::open(&path).unwrap();
+            let after = crate::embedded::migrations::runner()
+                .get_applied_migrations(&mut store.0)
+                .unwrap();
+            assert_eq!(&after[..17], before.as_slice());
+            assert_eq!(after.len(), 18);
+            assert_eq!(
+                store
+                    .artifacts_after(run().project(), "g1", "", 100)
+                    .unwrap(),
+                vec![original.clone()]
+            );
+            let scope =
+                serde_json::to_string(&graph_protocol::ProjectRef::from(run().project())).unwrap();
+            let mut query = store
+                .0
+                .prepare(concat!(
+                    include_str!("sql/explain_query_plan.sql"),
+                    include_str!("sql/select_artifact_page.sql")
+                ))
+                .unwrap();
+            let plan = query
+                .query_map(params![scope, "g1", "", 100], |row| row.get::<_, String>(3))
+                .unwrap()
+                .collect::<Result<Vec<_>, _>>()
+                .unwrap();
+            assert!(
+                plan.iter().any(|step| step
+                    .contains("USING COVERING INDEX artifacts_discovery_scope")
+                    && step.contains("project=? AND graph_version=? AND id>?")),
+                "{plan:?}"
+            );
+            assert!(
+                !plan.iter().any(|step| step.contains("TEMP B-TREE")),
+                "{plan:?}"
+            );
+        }
+    }
+
+    #[test]
+    fn discovery_pages_are_sorted_scoped_and_restartable() {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("discovery.db");
+        let mut store = Store::open(&path).unwrap();
+        store.record_analysis_run(&run()).unwrap();
+        for id in ["c", "a", "b"] {
+            let mut wire = graph_protocol::Artifact::from(&artifact());
+            wire.id = id.into();
+            store
+                .record_artifact(&wire.try_into_domain().unwrap())
+                .unwrap();
+        }
+        drop(store);
+        let store = Store::open(&path).unwrap();
+        let page = store.artifacts_after(run().project(), "g1", "", 2).unwrap();
+        assert_eq!(
+            page.iter().map(Artifact::id).collect::<Vec<_>>(),
+            ["a", "b"]
+        );
+        let tail = store
+            .artifacts_after(run().project(), "g1", page.last().unwrap().id(), 2)
+            .unwrap();
+        assert_eq!(tail.iter().map(Artifact::id).collect::<Vec<_>>(), ["c"]);
+        assert!(
+            store
+                .artifacts_after(run().project(), "g1", "c", 2)
+                .unwrap()
+                .is_empty()
+        );
+        assert_eq!(
+            store
+                .artifacts_after(run().project(), "g1", "", 1)
+                .unwrap()
+                .len(),
+            1
+        );
+        assert!(
+            store
+                .artifacts_after(run().project(), "other", "", 2)
+                .unwrap()
+                .is_empty()
+        );
+        let mut other = run().project().clone();
+        other.worktree_id = "other".into();
+        assert!(
+            store
+                .artifacts_after(&other, "g1", "", 2)
+                .unwrap()
+                .is_empty()
+        );
+        for limit in [0, 101, usize::MAX] {
+            assert!(
+                store
+                    .artifacts_after(run().project(), "g1", "", limit)
+                    .is_err()
+            );
+        }
+        assert!(store.artifacts_after(run().project(), "", "", 1).is_err());
+        assert!(store.events(0, 100).unwrap().is_empty());
+    }
+
+    #[test]
+    fn discovery_refuses_corrupt_candidate_instead_of_skipping_it() {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("corrupt-discovery.db");
+        let mut store = Store::open(&path).unwrap();
+        store.record_analysis_run(&run()).unwrap();
+        store.record_artifact(&artifact()).unwrap();
+        store
+            .0
+            .execute_batch(include_str!("sql/fixture_corrupt_artifact_descriptor.sql"))
+            .unwrap();
+        drop(store);
+        let store = Store::open(&path).unwrap();
+        assert!(matches!(
+            store.artifacts_after(run().project(), "g1", "", 100),
+            Err(StoreError::Corrupt(_))
+        ));
+    }
+
+    #[test]
+    fn discovery_exposes_multiple_manifests_for_fail_closed_caller_policy() {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("ambiguous-discovery.db");
+        let mut store = Store::open(&path).unwrap();
+        store.record_analysis_run(&run()).unwrap();
+        for id in ["journal-a", "journal-b"] {
+            let mut wire = graph_protocol::Artifact::from(&artifact());
+            wire.id = id.into();
+            wire.kind = "rpc_journal_manifest".into();
+            store
+                .record_artifact(&wire.try_into_domain().unwrap())
+                .unwrap();
+        }
+        let candidates = store
+            .artifacts_after(run().project(), "g1", "", 100)
+            .unwrap();
+        assert_eq!(candidates.len(), 2);
+        assert!(
+            candidates
+                .iter()
+                .all(|candidate| candidate.kind() == "rpc_journal_manifest")
+        );
     }
 
     #[test]

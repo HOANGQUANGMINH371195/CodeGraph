@@ -25,7 +25,7 @@ fn v13_upgrade_preserves_history_and_existing_data_without_inventing_graphs() {
             .get_applied_migrations(&mut store.0)
             .unwrap();
         assert_eq!(&after[..13], before.as_slice());
-        assert_eq!(after.len(), 17);
+        assert_eq!(after.len(), 18);
         let counts: (i64, i64, i64, i64, i64, i64) = store
             .0
             .query_row(
@@ -69,7 +69,7 @@ fn v7_upgrade_adds_empty_receipt_ledger_without_rewriting_prior_history() {
         .get_applied_migrations(&mut connection)
         .unwrap();
     assert_eq!(&after[..7], before.as_slice());
-    assert_eq!(after.len(), 17);
+    assert_eq!(after.len(), 18);
     let counts: (i64, i64, i64, i64) = connection
         .query_row(
             include_str!("sql/fixture_check_v8_receipt_upgrade.sql"),
@@ -161,7 +161,7 @@ fn v9_upgrade_preserves_plan_without_inventing_launch_claim() {
         .get_applied_migrations(&mut connection)
         .unwrap();
     assert_eq!(&after[..9], before.as_slice());
-    assert_eq!(after.len(), 17);
+    assert_eq!(after.len(), 18);
     let counts: (i64, i64) = connection
         .query_row(
             include_str!("sql/fixture_check_v10_launch_upgrade.sql"),
@@ -200,7 +200,7 @@ fn v8_upgrade_preserves_receipt_bytes_without_fabricating_execution_plan() {
         .get_applied_migrations(&mut connection)
         .unwrap();
     assert_eq!(&after[..8], before.as_slice());
-    assert_eq!(after.len(), 17);
+    assert_eq!(after.len(), 18);
     let counts: (i64, i64, i64) = connection
         .query_row(
             include_str!("sql/fixture_check_v9_plan_upgrade.sql"),
@@ -287,7 +287,7 @@ fn v10_upgrade_preserves_history_and_does_not_fabricate_rpc_launches() {
         .get_applied_migrations(&mut connection)
         .unwrap();
     assert_eq!(&after[..10], before.as_slice());
-    assert_eq!(after.len(), 17);
+    assert_eq!(after.len(), 18);
     let counts: (i64, i64, i64, i64, i64) = connection
         .query_row(
             include_str!("sql/fixture_check_v11_rpc_upgrade.sql"),
@@ -362,7 +362,7 @@ fn failed_grouped_upgrade_rolls_back_prior_pending_versions_and_can_retry() {
     let reopened = Connection::open(&path).unwrap();
     assert_eq!(
         scalar(&reopened, "SELECT count(*) FROM refinery_schema_history"),
-        17
+        18
     );
     assert_eq!(scalar(&reopened, "SELECT count(*) FROM event_outbox"), 1);
     assert_eq!(
@@ -470,7 +470,7 @@ fn v11_upgrade_preserves_valid_rpc_claim_and_history_without_inventing_observati
             .get_applied_migrations(&mut reopened.0)
             .unwrap();
         assert_eq!(&after[..11], before.as_slice());
-        assert_eq!(after.len(), 17);
+        assert_eq!(after.len(), 18);
         let actual: String = reopened
             .0
             .query_row(

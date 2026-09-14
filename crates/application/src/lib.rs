@@ -257,6 +257,23 @@ pub trait ArtifactRepository {
     ) -> Result<Option<graph_domain::Artifact>, Self::Error>;
 }
 
+/// Scoped, paginated historical metadata discovery, never verified blob content.
+pub trait ArtifactDiscoveryRepository {
+    type Error: Error + Send + Sync + 'static;
+    /// Ascending artifact IDs strictly after the cursor; empty cursor starts a scan.
+    /// Page size must be 1..=100. An empty page ends this traversal; concurrent
+    /// insertions before the cursor require a new scan. All artifact kinds are
+    /// returned and validated; callers must verify journal scope and bytes.
+    /// The page bound does not limit database scan time or descriptor byte size.
+    fn artifacts_after(
+        &self,
+        project: &graph_domain::ProjectRef,
+        graph_version: &str,
+        after_id: &str,
+        limit: usize,
+    ) -> Result<Vec<graph_domain::Artifact>, Self::Error>;
+}
+
 /// Point-in-time ledger view, not a lease, permission grant or live-agent status.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct TaskSnapshot {

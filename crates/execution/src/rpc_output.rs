@@ -213,9 +213,11 @@ impl BoundRpcTerminal {
 }
 
 impl PreparedRpcReceipt<'_> {
-    /// Stages the journal and retains its handle in the artifact ledger.
+    /// Registers the journal descriptor before staging its CAS content.
     /// Host must select a stable manifest ID for scoped lookup after restart.
-    /// Failure may leave CAS blobs or a run row; retry the identical preparation.
+    /// Failure may leave unverified metadata or partial blobs. A stored handle
+    /// does not prove publication; reopen must verify bytes. Retry only the
+    /// identical preparation, never relaunch a worker to reconstruct output.
     pub fn stage_registered_journal<R, W>(
         &self,
         repository: &mut R,
@@ -240,10 +242,11 @@ impl PreparedRpcReceipt<'_> {
         {
             return Err(DomainError::Invalid("journal registration prerequisite mismatch").into());
         }
-        let manifest =
-            self.stage_journal(writer, manifest_id, max_manifest_bytes, max_output_bytes)?;
+        let (manifest, bytes) =
+            self.journal_manifest(manifest_id, max_manifest_bytes, max_output_bytes)?;
         repository.record_analysis_run(receipt.output_run())?;
         repository.record_artifact(&manifest)?;
+        self.write_journal(writer, &manifest, &bytes)?;
         Ok(manifest)
     }
 
@@ -257,6 +260,18 @@ impl PreparedRpcReceipt<'_> {
         max_manifest_bytes: usize,
         max_output_bytes: u64,
     ) -> Result<Artifact, Box<dyn std::error::Error + Send + Sync>> {
+        let (manifest, bytes) =
+            self.journal_manifest(manifest_id, max_manifest_bytes, max_output_bytes)?;
+        self.write_journal(writer, &manifest, &bytes)?;
+        Ok(manifest)
+    }
+
+    fn journal_manifest(
+        &self,
+        manifest_id: String,
+        max_manifest_bytes: usize,
+        max_output_bytes: u64,
+    ) -> Result<(Artifact, Vec<u8>), Box<dyn std::error::Error + Send + Sync>> {
         let receipt = &self.receipt;
         let bytes = graph_protocol::rpc_journal::encode(
             receipt,
@@ -276,6 +291,16 @@ impl PreparedRpcReceipt<'_> {
             ArtifactRetention::Evidence,
             ArtifactProtection::Unreviewed,
         )?;
+        Ok((manifest, bytes))
+    }
+
+    fn write_journal<W: ArtifactWriter>(
+        &self,
+        writer: &W,
+        manifest: &Artifact,
+        bytes: &[u8],
+    ) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+        let receipt = &self.receipt;
         let output = &self.terminal.terminal().output;
         let (Some(stdout), Some(stderr)) = (receipt.stdout(), receipt.stderr()) else {
             return Err(DomainError::Invalid("journal requires both streams").into());
@@ -283,12 +308,12 @@ impl PreparedRpcReceipt<'_> {
         for (artifact, mut input) in [
             (stdout, output.stdout.as_slice()),
             (stderr, output.stderr.as_slice()),
-            (&manifest, bytes.as_slice()),
+            (manifest, bytes),
         ] {
             writer.write_artifact(artifact, &mut input, artifact.byte_length())?;
             graph_application::verify_artifact(writer, artifact, artifact.byte_length())?;
         }
-        Ok(manifest)
+        Ok(())
     }
 
     pub fn receipt(&self) -> &RpcTerminalReceipt {

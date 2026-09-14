@@ -1041,7 +1041,7 @@ mod tests {
                 row.get(0)
             })
             .unwrap();
-        assert_eq!(migrations, 17);
+        assert_eq!(migrations, 18);
         let tasks_table: String = connection
             .query_row(
                 "SELECT name FROM sqlite_master WHERE type='table' AND name='tasks'",
@@ -1143,7 +1143,7 @@ mod tests {
                 row.get(0)
             })
             .unwrap();
-        assert_eq!(count, 17);
+        assert_eq!(count, 18);
     }
 
     #[test]
