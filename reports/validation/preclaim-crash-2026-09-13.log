@@ -1,0 +1,9 @@
+   Compiling graph-store v0.1.0 (/home/minh/projects/project-graph-agent/crates/store)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.60s
+     Running unittests src/lib.rs (target/debug/deps/graph_store-a0867d8ff7a3d34d)
+
+running 1 test
+test rpc_terminal::tests::kill_tests::killed_rpc_ledger_host_preserves_boundaries ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 65 filtered out; finished in 0.27s
+

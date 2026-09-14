@@ -1,0 +1,13 @@
+[package]
+name = "graph-application"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+graph-domain.workspace = true
+thiserror.workspace = true
+sha2.workspace = true
+
+[lints]
+workspace = true

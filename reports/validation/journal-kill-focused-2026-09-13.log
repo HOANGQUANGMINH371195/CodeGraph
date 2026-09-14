@@ -1,0 +1,10 @@
+   Compiling graph-store v0.1.0 (/home/minh/projects/project-graph-agent/crates/store)
+   Compiling graph-execution v0.1.0 (/home/minh/projects/project-graph-agent/crates/execution)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.01s
+     Running tests/rpc_fixture.rs (target/debug/deps/rpc_fixture-3afe253bae784557)
+
+running 1 test
+test publication::journal_kill::killed_journal_publisher_replays_without_another_rpc_spawn ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 18 filtered out; finished in 1.67s
+

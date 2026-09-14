@@ -1,0 +1,32 @@
+[package]
+name = "graph-execution"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+graph-domain.workspace = true
+graph-application.workspace = true
+graph-protocol.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+thiserror.workspace = true
+
+[target.'cfg(target_os = "linux")'.dependencies]
+rustix = { workspace = true, features = ["fs", "process"] }
+
+[target.'cfg(target_os = "linux")'.dev-dependencies]
+rustix = { workspace = true, features = ["process"] }
+
+[dev-dependencies]
+tempfile.workspace = true
+graph-store.workspace = true
+graph-source.workspace = true
+
+[[bin]]
+name = "graph-execution-fixture"
+path = "fixtures/owned.rs"
+test = false
+
+[lints]
+workspace = true

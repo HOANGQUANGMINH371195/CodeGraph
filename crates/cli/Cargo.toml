@@ -1,0 +1,18 @@
+[package]
+name = "project-graph-agent"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+[dependencies]
+graph-domain.workspace = true
+graph-application.workspace = true
+graph-store.workspace = true
+graph-protocol.workspace = true
+graph-source.workspace = true
+graph-system.workspace = true
+clap.workspace = true
+serde_json.workspace = true
+[dev-dependencies]
+tempfile.workspace = true
+[lints]
+workspace = true

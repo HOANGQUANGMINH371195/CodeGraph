@@ -1,0 +1,10 @@
+   Compiling graph-execution v0.1.0 (/home/minh/projects/project-graph-agent/crates/execution)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.39s
+     Running tests/rpc_fixture.rs (target/debug/deps/rpc_fixture-3afe253bae784557)
+
+running 2 tests
+test sandboxed_rpc_allow_list_fails_before_register_or_spawn ... ok
+test sandboxed_rpc_launch_uses_same_supervisor_and_declared_mount ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 12 filtered out; finished in 1.10s
+

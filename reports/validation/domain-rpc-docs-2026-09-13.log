@@ -1,0 +1,94 @@
+   Compiling graph-domain v0.1.0 (/home/minh/projects/project-graph-agent/crates/domain)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.19s
+     Running unittests src/lib.rs (target/debug/deps/graph_domain-a3cc81d7062840a4)
+
+running 36 tests
+test checks::tests::configuration_cannot_pass_vacuously_or_hide_duplicate_requirements ... ok
+test checks::tests::duplicate_and_extra_reports_cannot_be_hidden_by_order ... ok
+test checks::tests::only_passed_with_matching_candidate_and_evidence_satisfies_policy ... ok
+test context_pack::tests::capability_grant_is_time_bounded_and_deduplicated ... ok
+test context_pack::tests::handoff_and_pack_reject_scope_widening_and_require_data_label ... ok
+test context_pack::tests::scope_is_canonical_and_path_matching_respects_boundaries ... ok
+test context_pack::tests::scope_rejects_empty_duplicate_and_unsafe_selectors ... ok
+test context_pack::tests::claim_bundle_keeps_verified_and_heuristic_candidates_out_of_acceptance ... ok
+test fact::tests::acceptance_requires_exact_scope_and_evidence ... ok
+test fact::tests::graph_writer_alone_produces_accepted_fact ... ok
+test context_pack::tests::unknown_claim_line_and_content_label_are_bounded ... ok
+test execution::tests::stop_reason_cannot_be_erased_by_later_zero_exit ... ok
+test fact::tests::persisted_decisions_validate_their_payload ... ok
+test execution::tests::zero_exit_needs_reap_both_complete_streams_and_cleanup ... ok
+test fact::tests::persistence_rehydration_requires_matching_decision ... ok
+test fact::tests::candidate_is_validated_and_evidence_is_canonicalized ... ok
+test fact::tests::terminal_state_machine_is_explicit_and_one_way ... ok
+test graph_version::tests::cache_distinguishes_source_change_and_expiry ... ok
+test graph_version::tests::delta_requires_forward_same_worktree_and_canonical_lists ... ok
+test identity::tests::edge_identity_rejects_empty_kind_and_control_text ... ok
+test identity::tests::invalid_node_inputs_and_ids_fail_closed ... ok
+test integration_decision::tests::exact_unique_passed_receipts_are_required ... ok
+test rpc_launch::tests::connection_rejects_bad_labels_and_limits_but_not_adapter_specific_caps ... ok
+test identity::tests::edge_id_is_relation_scoped_and_discriminator_aware ... ok
+test rpc_launch::tests::complete_description_identity_is_preserved_without_minting_authority ... ok
+test identity::tests::identity_material_exposes_path_signature_and_body_separately ... ok
+test identity::tests::identity_material_is_snapshot_independent_and_not_line_only ... ok
+test integration_decision::tests::missing_duplicate_extra_or_failed_receipt_cannot_form_decision ... ok
+test rpc_launch::tests::launch_rejects_mismatched_task_lease_and_repository_policy ... ok
+test rpc_terminal::tests::valid_receipt_keeps_uncertainty_even_after_zero_exit_and_redacts_debug ... ok
+test tests::rejects_self_and_duplicate_dependencies ... ok
+test rpc_launch::tests::process_validation_is_shared_without_changing_closed_stdin_checks ... ok
+test rpc_terminal::tests::output_run_and_artifact_linkage_cannot_cross_snapshots_or_streams ... ok
+test rpc_terminal::tests::timing_pending_and_input_bounds_do_not_silently_normalize ... ok
+test rpc_terminal::tests::missing_artifacts_are_allowed_only_for_noncomplete_streams ... ok
+test rpc_terminal::tests::rejects_nonspawn_and_inconsistent_terminal_process_claims ... ok
+
+test result: ok. 36 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/deployment.rs (target/debug/deps/deployment-03a7da9433417906)
+
+running 16 tests
+test accepts_nested_citation_ranges_but_rejects_unknown_lines_outside_root ... ok
+test accepts_only_the_three_declared_edge_shapes ... ok
+test empty_graph_is_a_valid_explicit_replacement ... ok
+test edge_citations_cannot_cross_scope_or_reuse_node_identity ... ok
+test invalid_errors_are_static_and_do_not_echo_untrusted_identifiers ... ok
+test rejects_duplicate_edges_using_the_full_edge_identity ... ok
+test rejects_conflicting_content_for_a_citation_id_including_the_root ... ok
+test rejects_duplicate_node_ids ... ok
+test rejects_empty_control_and_oversized_adapter_fields ... ok
+test rejects_citations_outside_every_source_scope_dimension ... ok
+test rejects_invalid_mount_targets_and_mount_metadata_on_other_edges ... ok
+test rejects_invalid_node_and_unknown_text ... ok
+test rejects_missing_and_mistyped_edge_endpoints ... ok
+test valid_graph_exposes_immutable_domain_data ... ok
+test rejects_collection_budget_overflows ... ok
+test exact_collection_limits_accept_distinct_valid_graph_data ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.59s
+
+     Running tests/sql_link.rs (target/debug/deps/sql_link-5f707dca78986133)
+
+running 3 tests
+test rejects_non_full_sources_mixed_snapshot_duplicate_ids_and_invalid_extent ... ok
+test candidate_graph_is_scoped_and_explicitly_structural ... ok
+test rejects_target_path_mismatch_partial_target_and_statement_gap ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/wire_parsing.rs (target/debug/deps/wire_parsing-031f23df9100ab6b)
+
+running 7 tests
+test assertions ... ok
+test capabilities ... ok
+test evidence ... ok
+test events ... ok
+test operations ... ok
+test claims ... ok
+test origins ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests graph_domain
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

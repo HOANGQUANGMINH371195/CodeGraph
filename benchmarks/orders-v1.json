@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "fixture": "fixtures/orders",
+  "scope": "Fixed questions and authored ground truth, not measured agent results",
+  "questions": [
+    {"id":"orientation","question":"Hệ thống khởi đầu request ở đâu?","evidence":["src/main.mjs","src/http.mjs:ordersServer","compose.yaml"],"required":["orders listener","POST /orders","separate notifications listener"]},
+    {"id":"order-flow","question":"Luồng POST /orders tới database thế nào?","evidence":["src/http.mjs:ordersServer","src/service.mjs:OrderService.create","src/store.mjs:OrderStore.createOrder","sql/insert-order.sql","sql/enqueue.sql"],"required":["input validation","order and outbox in one transaction","rollback on conflict"]},
+    {"id":"impact","question":"Nếu sửa OrderService, những gì bị ảnh hưởng?","evidence":["src/service.mjs:OrderService","src/http.mjs:ordersServer","src/main.mjs","test/flow.test.mjs"],"required":["HTTP creation path","order.created payload consumers","flow regression test"],"unknowns":["semantic impact depends on actual change; do not claim every consumer must change"]},
+    {"id":"event","question":"Service nào publish/consume order.created?","evidence":["src/store.mjs:OrderStore.createOrder","src/relay.mjs:OutboxRelay.dispatch","src/http.mjs:notificationsServer","src/service.mjs:NotificationService.consume","sql/consume.sql","compose.yaml"],"required":["orders transactional outbox publisher","HTTP relay /events","notification consumer","ack only after successful delivery","deduplication by event ID"],"unknowns":["runtime WORKER_URL can override deployment target","no email provider or external broker"]},
+    {"id":"diagram","question":"Tạo architecture/sequence/data-flow diagram có evidence.","evidence":["compose.yaml","src/main.mjs","src/http.mjs","src/store.mjs","src/relay.mjs","sql/schema.sql"],"required":["separate orders and notifications databases","durable outbox boundary","HTTP event delivery","explicit dispatch trigger","source evidence per edge"],"unknowns":["no claim that a rendered diagram or graph extraction has been validated"]}
+  ]
+}

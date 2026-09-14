@@ -1,0 +1,49 @@
+[workspace]
+members = [
+    "crates/domain",
+    "crates/application",
+    "crates/protocol",
+    "crates/store",
+    "crates/source",
+    "crates/system",
+    "crates/execution",
+    "crates/cli",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.93.1"
+version = "0.1.0"
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusqlite = { version = "0.32", features = ["bundled"] }
+refinery = { version = "0.9.2", default-features = false, features = ["rusqlite"] }
+thiserror = "2"
+clap = { version = "4", features = ["derive"] }
+tempfile = "3"
+sha2 = "0.10.9"
+yaml-rust2 = { version = "0.11", default-features = false }
+sqlparser = { version = "=0.62.0", features = ["visitor"] }
+cap-std = "4.0.2"
+rustix = { version = "1.1.4", features = ["fs"] }
+graph-protocol = { path = "crates/protocol" }
+graph-domain = { path = "crates/domain" }
+graph-application = { path = "crates/application" }
+graph-store = { path = "crates/store" }
+graph-source = { path = "crates/source" }
+graph-system = { path = "crates/system" }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+unused_must_use = "deny"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+unwrap_used = "warn"
+expect_used = "warn"
+panic = "warn"
+todo = "warn"

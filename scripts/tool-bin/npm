@@ -1,0 +1,5 @@
+#!/bin/sh
+# Scoped npm launcher for machines with Node/Corepack but no npm in PATH.
+# Provision the pinned npm in .harness/corepack before invoking this wrapper.
+set -eu
+exec node "$(dirname "$0")/../../.harness/corepack/npm/10.9.2/bin/npm-cli.js" "$@"

@@ -1,0 +1,1 @@
+DROP TRIGGER rpc_spawn_fixture_fail_event;

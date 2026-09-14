@@ -1,0 +1,6 @@
+#!/bin/sh
+# Run a command with project-local tooling ahead of the system PATH.
+set -eu
+TASK_TOOLS_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+export PATH="$TASK_TOOLS_ROOT/scripts/tool-bin:$TASK_TOOLS_ROOT/.harness/rust-tools/usr/lib/rust-1.93/bin:$PATH"
+exec "$@"

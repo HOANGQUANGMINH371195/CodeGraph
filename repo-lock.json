@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-09-11T16:10:40.750Z",
+  "root": "/home/minh/projects/outsource",
+  "scope": "Commit and root manifest/license fingerprints; nested/submodule licenses, binary/toolchain pins and compatibility require separate review.",
+  "repositories": [
+    {
+      "name": "OpenSandbox",
+      "path": "/home/minh/projects/outsource/OpenSandbox",
+      "commit": "eed301cca02b261256b2c5e5a23bb1a570c90160",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "50e6751797c50dedd75ef1b8a0d9e42f5f8472e9fbce91f34718e9f97b0c780a"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "T3MP3ST",
+      "path": "/home/minh/projects/outsource/T3MP3ST",
+      "commit": "29824d5625ede419ac8cdae418c8f4c72c6270f7",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+        "package.json": "b94d2908adf495130277076da1cfb6424ec3f61dceace93de25fb7218e5b98a8",
+        "package-lock.json": "169cb82c9909ba2d7230738d33fea45912827f08db6c7839f3f597b8f7f8495e"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "archify",
+      "path": "/home/minh/projects/outsource/archify",
+      "commit": "18911058008f17dc065af23a2cdc9bfeff6d3f7a",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "b799ab081703e7821ae5096d2c1abdf14bbdc75e8ea1c4045998c36ed6db9706"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "browser",
+      "path": "/home/minh/projects/outsource/browser",
+      "commit": "d693f49872fc72676baecfb3626b1876eadaf57d",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "codegraph",
+      "path": "/home/minh/projects/outsource/codegraph",
+      "commit": "3ed73bc127323e63153bf6ec8354afa82ce36aaf",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "e6d98f98c666bebe065ac2492a0a19232cc318d4d67bac3ca42ffb77bacc8809",
+        "package.json": "2a633f7579cf687307f0c1a6edea025a7ff09f1c48790bca0ba205789c88e1c8",
+        "package-lock.json": "51f3b7f40b2e555ba17ca4df8ac99c02ce4871848a69b165d242b09d8c32c649"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "codepropertygraph",
+      "path": "/home/minh/projects/outsource/codepropertygraph",
+      "commit": "e7b6e8da670e4b58a64ba153d197041c25fd798a",
+      "branch": "master",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "10907e9c71b78937d48915c5d78cb3bf18e7a37f9fe5c38eac7388ebf13a2491"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "codex",
+      "path": "/home/minh/projects/outsource/codex",
+      "commit": "818f1cca8ccf8899f0f4d59336baebaccf358eed",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc",
+        "NOTICE": "9d71575ecfd9a843fc1677b0efb08053c6ba9fd686a0de1a6f5382fd3c220915",
+        "package.json": "0d0a78ff2f703abad442de6e99e127076ad40f85912692a82ec21d968944b368"
+      },
+      "license_files": [
+        "LICENSE",
+        "NOTICE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "codex-multi-auth",
+      "path": "/home/minh/projects/outsource/codex-multi-auth",
+      "commit": "f71768223f8cc5d9375b115046b624ce49e7db55",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "fe67f950b42c810f48074edaf3a605c86586e7928a32e59a2d78e9d8d0e119bf",
+        "package.json": "7cec99c952e24a512b5710a9e54733fb390101ad5a95676ab1cd683fedfcefe4",
+        "package-lock.json": "e6bac61c8256b4aa3f161209243538590c5d277a06ffc13b680a157261e4cd2f"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "ghostty",
+      "path": "/home/minh/projects/outsource/ghostty",
+      "commit": "44f2a44df7e8c4a0c6df3f7d872ef3d7ead88e51",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "386211873e5b7a02f663ae4d7adf96285999f91608f8f9f31fecfd0f4095e6f1"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "grit",
+      "path": "/home/minh/projects/outsource/grit",
+      "commit": "0f3c9d04abe9525b1884f3a0ade890e54a6d9ffe",
+      "branch": "master",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "db0693db32ddac486c96656ec8b827467c1d5d7dc7468eaa0051298425edf2cc",
+        "Cargo.toml": "98ea44a286d7e40fe18eaff17e739f7a5502736a4370f9557805b0e172cb430e",
+        "Cargo.lock": "4f523a6e30fd6f7437fc8d1bc1a32f3e8e2f20e5f25775fccb5dec7194dd694f"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "icm",
+      "path": "/home/minh/projects/outsource/icm",
+      "commit": "2ac87e8fc6c6fd0b5a6dc6d910446d95c65d3f42",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "db0693db32ddac486c96656ec8b827467c1d5d7dc7468eaa0051298425edf2cc",
+        "Cargo.toml": "8ec9adfad950ba9ebc87b021c53069a324dab3d30474dfcbc38bfb55e124a368",
+        "Cargo.lock": "7d26b55551b4c072ba74eccb8b5ebcadec5e0d918d800eb6b6de6be3f4248005"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "joern",
+      "path": "/home/minh/projects/outsource/joern",
+      "commit": "7c1163d96705d354d7c1957531487a63af34dda6",
+      "branch": "master",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "2e50a6169977b8c7bb3c3fb39e13b4502c0a5f00c79716647bee12731f50c4ce"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "opendev",
+      "path": "/home/minh/projects/outsource/opendev",
+      "commit": "d32c660e4eed1a8e988d1fd58da88e41ba641d08",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "3e970bf21a81247a8ff56246988d256b86bf23a38a963983cfe5784fddc8c180",
+        "Cargo.toml": "031f06676b00556bc9003ecb3302e7fc55b66fcbc6c6c79d8b5d230db12b44be",
+        "Cargo.lock": "dda8cd45da9b34c322513eaee8f246b420ebe4bd00012dbbca91c4eae777ddfb"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "orca",
+      "path": "/home/minh/projects/outsource/orca",
+      "commit": "26f9fd8ea152ad6126c005e5ae602c7d201f4a99",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "ff1b611f80580d49f4b97e93a97b24eb050b0671b26b8afe16341fab699112f3",
+        "package.json": "93e71557a62580e8253b6cf22f04355ad0913d20694e9326cc507b7fa355bd82"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "rtk",
+      "path": "/home/minh/projects/outsource/rtk",
+      "commit": "79347d5e0e20a61002b8dffe190d377846cb1e59",
+      "branch": "develop",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "4044ade9c21d8b084d3d16a03375cf3b7e166b946a327bb37a3fbbdb53287cfd",
+        "Cargo.toml": "c452f57c0bda45444f100995bbb9314a6b86a18c57d73edb057440cc6cc7b782",
+        "Cargo.lock": "22ea58a0ce3df26b12130f3ee5e32d99ed23eb4e7abd2f64418351e0fa57be98"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "ruflo",
+      "path": "/home/minh/projects/outsource/ruflo",
+      "commit": "a64f8b1ad89035c8b204f8b6e0893a2288551e06",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "a45ba66fa502c49ad108440536d8aa91dfe9c04575a32a01287839bee336199c",
+        "Cargo.toml": "9253b7500435781ac7066004d77d5e6febffccbdf6bfb147bbe4b0911f8c4d16",
+        "package.json": "39abfa0af3d13d06fe11c59933ac2a5cf0ae35835e3e658aec8ddde24cc2d79d",
+        "package-lock.json": "05c1b87adb10023307922d554d792338368569f3edcc257eec6af4bab3cdae05"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "t3code",
+      "path": "/home/minh/projects/outsource/t3code",
+      "commit": "3836890e4484406813997259efc69065b25ce698",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43",
+        "package.json": "50ed2a976250c808f8ab6eb088a6ffabc5142b2ac6fd09064d67b6e0624192a0"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "temp-rs-ddd",
+      "path": "/home/minh/projects/outsource/temp-rs-ddd",
+      "commit": "12398c3c6ebbc67998c4ac10a60332f281eeb793",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "9935ca9ef4a6a54047023ea043845f1b5186bae79d54314e9cad4f7d706ab7c4",
+        "Cargo.toml": "448ab39c5541b9dcc4ca735c114d9594038a1a4d311acb26081751107fd7e90e",
+        "Cargo.lock": "8495a02457f92841ca4640a96e3ad94d2998193d53c406b8d2a0f494053342a1"
+      },
+      "license_files": [
+        "LICENSE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    },
+    {
+      "name": "zvec",
+      "path": "/home/minh/projects/outsource/zvec",
+      "commit": "67ea1fa65ff99ee4c3a5bf4f2c0a6799c0390ead",
+      "branch": "main",
+      "clean": true,
+      "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files_sha256": {
+        "LICENSE": "43070e2d4e532684de521b885f385d0841030efa2b1a20bafb76133a5e1379c1",
+        "NOTICE": "332b1a498b446fab1232b671c2ba74102fc563c198dc6f53980d1282075958ad",
+        "pyproject.toml": "8f0f866c3267e749a2090c18397ca6cffc1b4c2d71e48e62f2ca761968d075eb"
+      },
+      "license_files": [
+        "LICENSE",
+        "NOTICE"
+      ],
+      "license_review": "pending",
+      "compatibility": "pending"
+    }
+  ]
+}

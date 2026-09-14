@@ -1,0 +1,298 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project-graph.invalid/schemas/context-pack.schema.json",
+  "title": "Project Graph Context Pack v1",
+  "description": "A bounded context envelope plus exact worker scope and host-issued metadata.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "pack_id",
+    "operation",
+    "envelope",
+    "scope",
+    "grant",
+    "handoff",
+    "untrusted_content"
+  ],
+  "properties": {
+    "schema_version": {"const": "project-graph/context-pack/v1"},
+    "pack_id": {"$ref": "#/$defs/non_empty_text"},
+    "operation": {
+      "type": "string",
+      "enum": ["orientation", "navigate", "impact", "test", "handoff", "trace", "change_review"]
+    },
+    "scope": {"$ref": "#/$defs/scope_selector"},
+    "grant": {"$ref": "#/$defs/capability_grant"},
+    "handoff": {
+      "anyOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/handoff"}
+      ]
+    },
+    "untrusted_content": {"$ref": "#/$defs/untrusted_content"},
+    "extensions": {"$ref": "#/$defs/extensions"},
+    "envelope": {"$ref": "https://project-graph.invalid/schemas/context-envelope.schema.json"}
+  },
+  "$defs": {
+    "non_empty_text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^[^\\u0000-\\u001f]*$"
+    },
+    "repository_path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^(?!/)[^\\\\:]+$"
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_id",
+        "worktree_id",
+        "git_head",
+        "working_tree_fingerprint",
+        "config_hash",
+        "ignore_policy_version"
+      ],
+      "properties": {
+        "repository_id": {"$ref": "#/$defs/non_empty_text"},
+        "worktree_id": {"$ref": "#/$defs/non_empty_text"},
+        "git_head": {"$ref": "#/$defs/non_empty_text"},
+        "working_tree_fingerprint": {"$ref": "#/$defs/non_empty_text"},
+        "config_hash": {"$ref": "#/$defs/non_empty_text"},
+        "ignore_policy_version": {"$ref": "#/$defs/non_empty_text"}
+      }
+    },
+    "scope_selector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["project", "graph_version", "paths", "node_ids", "max_depth"],
+      "properties": {
+        "project": {"$ref": "#/$defs/project"},
+        "graph_version": {"$ref": "#/$defs/non_empty_text"},
+        "paths": {
+          "type": "array",
+          "maxItems": 1024,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/repository_path"}
+        },
+        "node_ids": {
+          "type": "array",
+          "maxItems": 1024,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/non_empty_text"}
+        },
+        "max_depth": {"type": "integer", "minimum": 0, "maximum": 64}
+      },
+      "anyOf": [
+        {"required": ["paths"], "properties": {"paths": {"minItems": 1}}},
+        {"required": ["node_ids"], "properties": {"node_ids": {"minItems": 1}}}
+      ]
+    },
+    "capability_grant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "grant_id",
+        "issuer",
+        "subject",
+        "role",
+        "scope",
+        "capabilities",
+        "issued_at_ms",
+        "expires_at_ms",
+        "parent_grant_id"
+      ],
+      "properties": {
+        "grant_id": {"$ref": "#/$defs/non_empty_text"},
+        "issuer": {"$ref": "#/$defs/non_empty_text"},
+        "subject": {"$ref": "#/$defs/non_empty_text"},
+        "role": {"$ref": "#/$defs/non_empty_text"},
+        "scope": {"$ref": "#/$defs/scope_selector"},
+        "capabilities": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "read_graph",
+              "read_source",
+              "read_evidence",
+              "read_documents",
+              "read_runtime",
+              "run_analysis",
+              "run_tests",
+              "run_terminal",
+              "submit_claims",
+              "request_subagent",
+              "write_worktree"
+            ]
+          }
+        },
+        "issued_at_ms": {"type": "integer", "minimum": 0},
+        "expires_at_ms": {"type": "integer", "minimum": 1},
+        "parent_grant_id": {"type": ["string", "null"], "maxLength": 256}
+      }
+    },
+    "candidate_fact_assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "assertion_id",
+        "project",
+        "graph_version",
+        "subject",
+        "predicate",
+        "object",
+        "claim_state",
+        "assertion_kind",
+        "evidence",
+        "producer",
+        "decision"
+      ],
+      "properties": {
+        "schema_version": {"const": 1},
+        "assertion_id": {"$ref": "#/$defs/non_empty_text"},
+        "project": {"$ref": "#/$defs/project"},
+        "graph_version": {"$ref": "#/$defs/non_empty_text"},
+        "subject": {"$ref": "#/$defs/non_empty_text"},
+        "predicate": {"$ref": "#/$defs/non_empty_text"},
+        "object": {"$ref": "#/$defs/non_empty_text"},
+        "claim_state": {"const": "candidate"},
+        "assertion_kind": {
+          "type": "string",
+          "enum": ["parser", "resolver", "cpg", "runtime_trace", "document", "human", "security_finding"]
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "items": {"$ref": "#/$defs/evidence_ref"}
+        },
+        "producer": {"$ref": "#/$defs/producer"},
+        "decision": {"type": "null"}
+      }
+    },
+    "evidence_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind"],
+      "properties": {
+        "id": {"$ref": "#/$defs/non_empty_text"},
+        "kind": {
+          "type": "string",
+          "enum": ["source", "artifact", "analysis_run", "runtime_trace", "document", "human"]
+        }
+      }
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["analyzer", "version", "run_id"],
+      "properties": {
+        "analyzer": {"$ref": "#/$defs/non_empty_text"},
+        "version": {"$ref": "#/$defs/non_empty_text"},
+        "run_id": {"$ref": "#/$defs/non_empty_text"}
+      }
+    },
+    "unknown_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "reason", "subject", "path", "line"],
+      "properties": {
+        "code": {"$ref": "#/$defs/non_empty_text"},
+        "reason": {"$ref": "#/$defs/non_empty_text"},
+        "subject": {"type": ["string", "null"], "maxLength": 4096},
+        "path": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/repository_path"}]},
+        "line": {"type": ["integer", "null"], "minimum": 1}
+      }
+    },
+    "claim_bundle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bundle_id", "project", "graph_version", "scope", "verified", "heuristic", "unknowns"],
+      "properties": {
+        "bundle_id": {"$ref": "#/$defs/non_empty_text"},
+        "project": {"$ref": "#/$defs/project"},
+        "graph_version": {"$ref": "#/$defs/non_empty_text"},
+        "scope": {"$ref": "#/$defs/scope_selector"},
+        "verified": {
+          "type": "array",
+          "maxItems": 2048,
+          "items": {"$ref": "#/$defs/candidate_fact_assertion"}
+        },
+        "heuristic": {
+          "type": "array",
+          "maxItems": 2048,
+          "items": {"$ref": "#/$defs/candidate_fact_assertion"}
+        },
+        "unknowns": {
+          "type": "array",
+          "maxItems": 2048,
+          "items": {"$ref": "#/$defs/unknown_claim"}
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "handoff_id",
+        "sender",
+        "recipient",
+        "project",
+        "graph_version",
+        "scope",
+        "context_ref",
+        "claims",
+        "expires_at_ms"
+      ],
+      "properties": {
+        "handoff_id": {"$ref": "#/$defs/non_empty_text"},
+        "sender": {"$ref": "#/$defs/non_empty_text"},
+        "recipient": {"type": ["string", "null"], "maxLength": 256},
+        "project": {"$ref": "#/$defs/project"},
+        "graph_version": {"$ref": "#/$defs/non_empty_text"},
+        "scope": {"$ref": "#/$defs/scope_selector"},
+        "context_ref": {"$ref": "#/$defs/non_empty_text"},
+        "claims": {"$ref": "#/$defs/claim_bundle"},
+        "expires_at_ms": {"type": "integer", "minimum": 1}
+      }
+    },
+    "untrusted_content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["origins"],
+      "properties": {
+        "origins": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": ["source", "document", "tool_output", "runtime_trace", "human_input", "model_output"]
+          }
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "maxProperties": 64,
+      "propertyNames": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 128,
+        "pattern": "^[a-z0-9._-]+/[A-Za-z0-9._-]+$"
+      },
+      "additionalProperties": true
+    }
+  }
+}

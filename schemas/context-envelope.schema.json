@@ -1,0 +1,322 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project-graph.invalid/schemas/context-envelope.schema.json",
+  "title": "Project Graph Context Envelope v1",
+  "description": "Bounded, snapshot-bound agent context. Source text is data, not authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "project",
+    "graph_version",
+    "revision",
+    "view",
+    "query",
+    "source_is_untrusted",
+    "nodes",
+    "edges",
+    "code_slices",
+    "evidence",
+    "coverage",
+    "budget"
+  ],
+  "properties": {
+    "schema_version": {"const": "project-graph/context/v1"},
+    "project": {"$ref": "#/$defs/project"},
+    "graph_version": {"$ref": "#/$defs/non_empty_text"},
+    "revision": {"$ref": "#/$defs/non_empty_text"},
+    "view": {
+      "type": "string",
+      "enum": [
+        "orientation",
+        "symbol",
+        "flow",
+        "impact",
+        "architecture",
+        "dataflow",
+        "deployment",
+        "runtime",
+        "change"
+      ]
+    },
+    "query": {"type": "string", "minLength": 1, "maxLength": 65536},
+    "source_is_untrusted": {"const": true},
+    "nodes": {
+      "type": "array",
+      "maxItems": 1000,
+      "items": {"$ref": "#/$defs/context_node"}
+    },
+    "edges": {
+      "type": "array",
+      "maxItems": 5000,
+      "items": {"$ref": "#/$defs/context_edge"}
+    },
+    "code_slices": {
+      "type": "array",
+      "maxItems": 1000,
+      "items": {"$ref": "#/$defs/code_slice"}
+    },
+    "evidence": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {"$ref": "#/$defs/source_evidence"}
+    },
+    "coverage": {"$ref": "#/$defs/coverage"},
+    "budget": {"$ref": "#/$defs/context_budget"},
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "$defs": {
+    "non_empty_text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^[^\\u0000-\\u001f]*$"
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_id",
+        "worktree_id",
+        "git_head",
+        "working_tree_fingerprint",
+        "config_hash",
+        "ignore_policy_version"
+      ],
+      "properties": {
+        "repository_id": {"$ref": "#/$defs/non_empty_text"},
+        "worktree_id": {"$ref": "#/$defs/non_empty_text"},
+        "git_head": {"$ref": "#/$defs/non_empty_text"},
+        "working_tree_fingerprint": {"$ref": "#/$defs/non_empty_text"},
+        "config_hash": {"$ref": "#/$defs/non_empty_text"},
+        "ignore_policy_version": {"$ref": "#/$defs/non_empty_text"}
+      }
+    },
+    "source_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "id",
+        "project",
+        "graph_version",
+        "path",
+        "content_sha256",
+        "start_line",
+        "end_line",
+        "analysis_run"
+      ],
+      "properties": {
+        "schema_version": {"const": 1},
+        "id": {"$ref": "#/$defs/non_empty_text"},
+        "project": {"$ref": "#/$defs/project"},
+        "graph_version": {"$ref": "#/$defs/non_empty_text"},
+        "path": {"$ref": "#/$defs/repository_path"},
+        "content_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "start_line": {"type": "integer", "minimum": 1},
+        "end_line": {"type": "integer", "minimum": 1},
+        "analysis_run": {"$ref": "#/$defs/non_empty_text"}
+      }
+    },
+    "repository_path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^(?!/)[^\\\\:]+$"
+    },
+    "context_node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "name",
+        "provenance",
+        "resolution",
+        "source_derived",
+        "evidence_ids"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/non_empty_text"},
+        "kind": {"$ref": "#/$defs/non_empty_text"},
+        "name": {"$ref": "#/$defs/non_empty_text"},
+        "provenance": {"$ref": "#/$defs/provenance"},
+        "resolution": {"$ref": "#/$defs/resolution"},
+        "source_derived": {"type": "boolean"},
+        "evidence_ids": {"$ref": "#/$defs/evidence_ids"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"source_derived": {"const": true}}},
+          "then": {"properties": {"evidence_ids": {"minItems": 1}}}
+        },
+        {
+          "if": {
+            "required": ["resolution"],
+            "properties": {"resolution": {"const": "resolved"}}
+          },
+          "then": {"properties": {"evidence_ids": {"minItems": 1}}}
+        }
+      ]
+    },
+    "context_edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "to",
+        "kind",
+        "provenance",
+        "resolution",
+        "source_derived",
+        "evidence_ids"
+      ],
+      "properties": {
+        "from": {"$ref": "#/$defs/non_empty_text"},
+        "to": {"$ref": "#/$defs/non_empty_text"},
+        "kind": {"$ref": "#/$defs/non_empty_text"},
+        "provenance": {"$ref": "#/$defs/provenance"},
+        "resolution": {"$ref": "#/$defs/resolution"},
+        "source_derived": {"type": "boolean"},
+        "evidence_ids": {"$ref": "#/$defs/evidence_ids"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"source_derived": {"const": true}}},
+          "then": {"properties": {"evidence_ids": {"minItems": 1}}}
+        },
+        {
+          "if": {
+            "required": ["resolution"],
+            "properties": {"resolution": {"const": "resolved"}}
+          },
+          "then": {"properties": {"evidence_ids": {"minItems": 1}}}
+        }
+      ]
+    },
+    "evidence_ids": {
+      "type": "array",
+      "maxItems": 10000,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/non_empty_text"}
+    },
+    "code_slice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "start", "end", "language", "content", "evidence_ids"],
+      "properties": {
+        "path": {"$ref": "#/$defs/repository_path"},
+        "start": {"type": "integer", "minimum": 1},
+        "end": {"type": "integer", "minimum": 1},
+        "language": {
+          "type": ["string", "null"],
+          "maxLength": 128,
+          "pattern": "^[^\\u0000-\\u001f]*$"
+        },
+        "content": {"type": ["string", "null"], "maxLength": 16777216},
+        "evidence_ids": {"$ref": "#/$defs/evidence_ids", "minItems": 1}
+      }
+    },
+    "provenance": {
+      "type": "string",
+      "enum": ["codegraph", "resolver", "cpg", "joern", "runtime_trace", "document", "human", "heuristic"]
+    },
+    "resolution": {
+      "type": "string",
+      "enum": ["resolved", "partial", "unresolved", "stale"]
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "unknowns"],
+      "properties": {
+        "status": {"type": "string", "enum": ["complete", "partial", "unknown"]},
+        "unknowns": {
+          "type": "array",
+          "maxItems": 2048,
+          "items": {"$ref": "#/$defs/unknown_context"}
+        }
+      }
+    },
+    "unknown_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "reason", "subject", "path", "line"],
+      "properties": {
+        "code": {"$ref": "#/$defs/non_empty_text"},
+        "reason": {"$ref": "#/$defs/non_empty_text"},
+        "subject": {"type": ["string", "null"], "maxLength": 4096},
+        "path": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/repository_path"}]},
+        "line": {"type": ["integer", "null"], "minimum": 1}
+      }
+    },
+    "context_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_nodes",
+        "max_edges",
+        "max_source_ranges",
+        "max_source_bytes",
+        "max_traversal_depth",
+        "max_serialized_bytes",
+        "max_characters",
+        "max_tokens",
+        "tokenizer",
+        "emitted_nodes",
+        "emitted_edges",
+        "emitted_source_ranges",
+        "emitted_source_bytes",
+        "emitted_serialized_bytes",
+        "emitted_characters",
+        "emitted_tokens",
+        "truncated"
+      ],
+      "properties": {
+        "max_nodes": {"type": "integer", "minimum": 1, "maximum": 1000},
+        "max_edges": {"type": "integer", "minimum": 1, "maximum": 5000},
+        "max_source_ranges": {"type": "integer", "minimum": 1, "maximum": 1000},
+        "max_source_bytes": {"type": "integer", "minimum": 1, "maximum": 16777216},
+        "max_traversal_depth": {"type": "integer", "minimum": 0, "maximum": 64},
+        "max_serialized_bytes": {"type": "integer", "minimum": 1, "maximum": 16777216},
+        "max_characters": {"type": "integer", "minimum": 1, "maximum": 16777216},
+        "max_tokens": {"$ref": "#/$defs/optional_positive_budget"},
+        "tokenizer": {"type": ["string", "null"], "maxLength": 128, "pattern": "^[^\\u0000-\\u001f]*$"},
+        "emitted_nodes": {"type": "integer", "minimum": 0},
+        "emitted_edges": {"type": "integer", "minimum": 0},
+        "emitted_source_ranges": {"type": "integer", "minimum": 0},
+        "emitted_source_bytes": {"type": "integer", "minimum": 0},
+        "emitted_serialized_bytes": {"type": "integer", "minimum": 0},
+        "emitted_characters": {"type": "integer", "minimum": 0},
+        "emitted_tokens": {"$ref": "#/$defs/optional_nonnegative_budget"},
+        "truncated": {"type": "boolean"}
+      }
+    },
+    "optional_positive_budget": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "integer", "minimum": 1, "maximum": 4194304}
+      ]
+    },
+    "optional_nonnegative_budget": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "integer", "minimum": 0, "maximum": 4194304}
+      ]
+    },
+    "extensions": {
+      "type": "object",
+      "maxProperties": 64,
+      "propertyNames": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 128,
+        "pattern": "^[a-z0-9._-]+/[A-Za-z0-9._-]+$"
+      },
+      "additionalProperties": true
+    }
+  }
+}

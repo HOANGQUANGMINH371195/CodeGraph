@@ -1,0 +1,5052 @@
+    Checking graph-domain v0.1.0 (/home/minh/projects/project-graph-agent/crates/domain)
+   Compiling graph-store v0.1.0 (/home/minh/projects/project-graph-agent/crates/store)
+error: item in documentation is missing backticks
+ --> crates/domain/src/lib.rs:2:5
+  |
+2 | //! SQLite, process, network, or CLI dependency.
+  |     ^^^^^^
+  |
+  = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#doc_markdown
+  = note: `-D clippy::doc-markdown` implied by `-D warnings`
+  = help: to override `-D warnings` add `#[allow(clippy::doc_markdown)]`
+help: try
+  |
+2 - //! SQLite, process, network, or CLI dependency.
+2 + //! `SQLite`, process, network, or CLI dependency.
+  |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/analysis.rs:17:5
+   |
+17 | /     pub fn new(
+18 | |         id: String,
+19 | |         project: ProjectRef,
+20 | |         graph_version: String,
+...  |
+24 | |         input_manifest_sha256: String,
+25 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+   = note: `-D clippy::missing-errors-doc` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::missing_errors_doc)]`
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/analysis.rs:56:12
+   |
+56 |     pub fn id(&self) -> &str {
+   |            ^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+   = note: `-D clippy::must-use-candidate` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::must_use_candidate)]`
+help: add the attribute
+   |
+56 ~     #[must_use] 
+57 ~     pub fn id(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/analysis.rs:59:12
+   |
+59 |     pub fn project(&self) -> &ProjectRef {
+   |            ^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+59 ~     #[must_use] 
+60 ~     pub fn project(&self) -> &ProjectRef {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/analysis.rs:62:12
+   |
+62 |     pub fn graph_version(&self) -> &str {
+   |            ^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+62 ~     #[must_use] 
+63 ~     pub fn graph_version(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/analysis.rs:65:12
+   |
+65 |     pub fn analyzer(&self) -> &str {
+   |            ^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+65 ~     #[must_use] 
+66 ~     pub fn analyzer(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/analysis.rs:68:12
+   |
+68 |     pub fn analyzer_version(&self) -> &str {
+   |            ^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+68 ~     #[must_use] 
+69 ~     pub fn analyzer_version(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/analysis.rs:71:12
+   |
+71 |     pub fn configuration_sha256(&self) -> &str {
+   |            ^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+71 ~     #[must_use] 
+72 ~     pub fn configuration_sha256(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/analysis.rs:74:12
+   |
+74 |     pub fn input_manifest_sha256(&self) -> &str {
+   |            ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+74 ~     #[must_use] 
+75 ~     pub fn input_manifest_sha256(&self) -> &str {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/artifact.rs:37:5
+   |
+37 | /     pub fn new(
+38 | |         id: String,
+39 | |         project: ProjectRef,
+40 | |         graph_version: String,
+...  |
+46 | |         declared_protection: ArtifactProtection,
+47 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/artifact.rs:83:12
+   |
+83 |     pub fn id(&self) -> &str {
+   |            ^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+83 ~     #[must_use] 
+84 ~     pub fn id(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/artifact.rs:86:12
+   |
+86 |     pub fn project(&self) -> &ProjectRef {
+   |            ^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+86 ~     #[must_use] 
+87 ~     pub fn project(&self) -> &ProjectRef {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/artifact.rs:89:12
+   |
+89 |     pub fn graph_version(&self) -> &str {
+   |            ^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+89 ~     #[must_use] 
+90 ~     pub fn graph_version(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/artifact.rs:92:12
+   |
+92 |     pub fn analysis_run(&self) -> &str {
+   |            ^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+92 ~     #[must_use] 
+93 ~     pub fn analysis_run(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/artifact.rs:95:12
+   |
+95 |     pub fn content_sha256(&self) -> &str {
+   |            ^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+95 ~     #[must_use] 
+96 ~     pub fn content_sha256(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/artifact.rs:98:12
+   |
+98 |     pub fn byte_length(&self) -> u64 {
+   |            ^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+98 ~     #[must_use] 
+99 ~     pub fn byte_length(&self) -> u64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/artifact.rs:101:12
+    |
+101 |     pub fn kind(&self) -> &str {
+    |            ^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+101 ~     #[must_use] 
+102 ~     pub fn kind(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/artifact.rs:104:12
+    |
+104 |     pub fn retention(&self) -> ArtifactRetention {
+    |            ^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+104 ~     #[must_use] 
+105 ~     pub fn retention(&self) -> ArtifactRetention {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/artifact.rs:107:12
+    |
+107 |     pub fn declared_protection(&self) -> ArtifactProtection {
+    |            ^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+107 ~     #[must_use] 
+108 ~     pub fn declared_protection(&self) -> ArtifactProtection {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/check_run.rs:17:5
+   |
+17 | /     pub fn new(
+18 | |         run_id: String,
+19 | |         task: TaskSpec,
+20 | |         origin_lease: Lease,
+...  |
+25 | |         command: CheckCommand,
+26 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/check_run.rs:58:12
+   |
+58 |     pub fn run_id(&self) -> &str {
+   |            ^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+58 ~     #[must_use] 
+59 ~     pub fn run_id(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/check_run.rs:61:12
+   |
+61 |     pub fn task(&self) -> &TaskSpec {
+   |            ^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+61 ~     #[must_use] 
+62 ~     pub fn task(&self) -> &TaskSpec {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/check_run.rs:64:12
+   |
+64 |     pub fn origin_lease(&self) -> &Lease {
+   |            ^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+64 ~     #[must_use] 
+65 ~     pub fn origin_lease(&self) -> &Lease {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/check_run.rs:67:12
+   |
+67 |     pub fn submission_sequence(&self) -> i64 {
+   |            ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+67 ~     #[must_use] 
+68 ~     pub fn submission_sequence(&self) -> i64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/check_run.rs:70:12
+   |
+70 |     pub fn candidate(&self) -> &Artifact {
+   |            ^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+70 ~     #[must_use] 
+71 ~     pub fn candidate(&self) -> &Artifact {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/check_run.rs:73:12
+   |
+73 |     pub fn policy(&self) -> &RequiredChecks {
+   |            ^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+73 ~     #[must_use] 
+74 ~     pub fn policy(&self) -> &RequiredChecks {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/check_run.rs:76:12
+   |
+76 |     pub fn check_name(&self) -> &str {
+   |            ^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+76 ~     #[must_use] 
+77 ~     pub fn check_name(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/check_run.rs:79:12
+   |
+79 |     pub fn command(&self) -> &CheckCommand {
+   |            ^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+79 ~     #[must_use] 
+80 ~     pub fn command(&self) -> &CheckCommand {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/checks.rs:46:5
+   |
+46 |     pub fn new(names: Vec<String>) -> Result<Self, DomainError> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/checks.rs:60:12
+   |
+60 |     pub fn evaluate(
+   |            ^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+60 ~     #[must_use] 
+61 ~     pub fn evaluate(
+   |
+
+error: consider adding a `;` to the last statement for consistent formatting
+  --> crates/domain/src/checks.rs:77:21
+   |
+77 |                     issues.push(CheckIssue::Duplicate(name.clone()))
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: add a `;` here: `issues.push(CheckIssue::Duplicate(name.clone()));`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#semicolon_if_nothing_returned
+   = note: `-D clippy::semicolon-if-nothing-returned` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::semicolon_if_nothing_returned)]`
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/command.rs:27:5
+   |
+27 | /     pub fn new(
+28 | |         program: String,
+29 | |         args: Vec<String>,
+30 | |         cwd: String,
+...  |
+36 | |         stderr_max_bytes: u64,
+37 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/command.rs:61:12
+   |
+61 |     pub fn program(&self) -> &str {
+   |            ^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+61 ~     #[must_use] 
+62 ~     pub fn program(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/command.rs:64:12
+   |
+64 |     pub fn args(&self) -> &[String] {
+   |            ^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+64 ~     #[must_use] 
+65 ~     pub fn args(&self) -> &[String] {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/command.rs:67:12
+   |
+67 |     pub fn cwd(&self) -> &str {
+   |            ^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+67 ~     #[must_use] 
+68 ~     pub fn cwd(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/command.rs:70:12
+   |
+70 |     pub fn executable_sha256(&self) -> &str {
+   |            ^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+70 ~     #[must_use] 
+71 ~     pub fn executable_sha256(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/command.rs:73:12
+   |
+73 |     pub fn environment_sha256(&self) -> &str {
+   |            ^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+73 ~     #[must_use] 
+74 ~     pub fn environment_sha256(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/command.rs:76:12
+   |
+76 |     pub fn timeout_ms(&self) -> u64 {
+   |            ^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+76 ~     #[must_use] 
+77 ~     pub fn timeout_ms(&self) -> u64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/command.rs:79:12
+   |
+79 |     pub fn cleanup_timeout_ms(&self) -> u64 {
+   |            ^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+79 ~     #[must_use] 
+80 ~     pub fn cleanup_timeout_ms(&self) -> u64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/command.rs:82:12
+   |
+82 |     pub fn stdout_max_bytes(&self) -> u64 {
+   |            ^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+82 ~     #[must_use] 
+83 ~     pub fn stdout_max_bytes(&self) -> u64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/command.rs:85:12
+   |
+85 |     pub fn stderr_max_bytes(&self) -> u64 {
+   |            ^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+85 ~     #[must_use] 
+86 ~     pub fn stderr_max_bytes(&self) -> u64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/context_pack.rs:35:12
+   |
+35 |     pub fn as_str(self) -> &'static str {
+   |            ^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+35 ~     #[must_use] 
+36 ~     pub fn as_str(self) -> &'static str {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/context_pack.rs:47:5
+   |
+47 |     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: method `from_str` can be confused for the standard trait method `std::str::FromStr::from_str`
+  --> crates/domain/src/context_pack.rs:47:5
+   |
+47 | /     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+48 | |         match value {
+49 | |             "orientation" => Ok(Self::Orientation),
+50 | |             "navigate" => Ok(Self::Navigate),
+...  |
+58 | |     }
+   | |_____^
+   |
+   = help: consider implementing the trait `std::str::FromStr` or choosing a less ambiguous method name
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#should_implement_trait
+   = note: `-D clippy::should-implement-trait` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::should_implement_trait)]`
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/context_pack.rs:75:5
+   |
+75 | /     pub fn new(
+76 | |         project: ProjectRef,
+77 | |         graph_version: String,
+78 | |         mut paths: Vec<String>,
+79 | |         mut node_ids: Vec<String>,
+80 | |         max_depth: u16,
+81 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:114:12
+    |
+114 |     pub fn project(&self) -> &ProjectRef {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+114 ~     #[must_use] 
+115 ~     pub fn project(&self) -> &ProjectRef {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:118:12
+    |
+118 |     pub fn graph_version(&self) -> &str {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+118 ~     #[must_use] 
+119 ~     pub fn graph_version(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:122:12
+    |
+122 |     pub fn paths(&self) -> &[String] {
+    |            ^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+122 ~     #[must_use] 
+123 ~     pub fn paths(&self) -> &[String] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:126:12
+    |
+126 |     pub fn node_ids(&self) -> &[String] {
+    |            ^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+126 ~     #[must_use] 
+127 ~     pub fn node_ids(&self) -> &[String] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:130:12
+    |
+130 |     pub fn max_depth(&self) -> u16 {
+    |            ^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+130 ~     #[must_use] 
+131 ~     pub fn max_depth(&self) -> u16 {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:166:12
+    |
+166 |     pub fn as_str(self) -> &'static str {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+166 ~     #[must_use] 
+167 ~     pub fn as_str(self) -> &'static str {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/context_pack.rs:182:5
+    |
+182 |     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: method `from_str` can be confused for the standard trait method `std::str::FromStr::from_str`
+   --> crates/domain/src/context_pack.rs:182:5
+    |
+182 | /     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+183 | |         match value {
+184 | |             "read_graph" => Ok(Self::ReadGraph),
+185 | |             "read_source" => Ok(Self::ReadSource),
+...   |
+197 | |     }
+    | |_____^
+    |
+    = help: consider implementing the trait `std::str::FromStr` or choosing a less ambiguous method name
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#should_implement_trait
+
+error: item in documentation is missing backticks
+   --> crates/domain/src/context_pack.rs:201:5
+    |
+201 | /// GraphWriter authority or permission to accept a claim.
+    |     ^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#doc_markdown
+help: try
+    |
+201 - /// GraphWriter authority or permission to accept a claim.
+201 + /// `GraphWriter` authority or permission to accept a claim.
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/context_pack.rs:217:5
+    |
+217 | /     pub fn new(
+218 | |         grant_id: String,
+219 | |         issuer: String,
+220 | |         subject: String,
+...   |
+226 | |         parent_grant_id: Option<String>,
+227 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:261:12
+    |
+261 |     pub fn grant_id(&self) -> &str {
+    |            ^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+261 ~     #[must_use] 
+262 ~     pub fn grant_id(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:265:12
+    |
+265 |     pub fn issuer(&self) -> &str {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+265 ~     #[must_use] 
+266 ~     pub fn issuer(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:269:12
+    |
+269 |     pub fn subject(&self) -> &str {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+269 ~     #[must_use] 
+270 ~     pub fn subject(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:273:12
+    |
+273 |     pub fn role(&self) -> &str {
+    |            ^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+273 ~     #[must_use] 
+274 ~     pub fn role(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:277:12
+    |
+277 |     pub fn scope(&self) -> &ScopeSelector {
+    |            ^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+277 ~     #[must_use] 
+278 ~     pub fn scope(&self) -> &ScopeSelector {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:281:12
+    |
+281 |     pub fn capabilities(&self) -> &[Capability] {
+    |            ^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+281 ~     #[must_use] 
+282 ~     pub fn capabilities(&self) -> &[Capability] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:285:12
+    |
+285 |     pub fn issued_at_ms(&self) -> u64 {
+    |            ^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+285 ~     #[must_use] 
+286 ~     pub fn issued_at_ms(&self) -> u64 {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:289:12
+    |
+289 |     pub fn expires_at_ms(&self) -> u64 {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+289 ~     #[must_use] 
+290 ~     pub fn expires_at_ms(&self) -> u64 {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:293:12
+    |
+293 |     pub fn parent_grant_id(&self) -> Option<&str> {
+    |            ^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+293 ~     #[must_use] 
+294 ~     pub fn parent_grant_id(&self) -> Option<&str> {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/context_pack.rs:318:5
+    |
+318 | /     pub fn new(
+319 | |         code: String,
+320 | |         reason: String,
+321 | |         subject: Option<String>,
+322 | |         path: Option<String>,
+323 | |         line: Option<u32>,
+324 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:345:12
+    |
+345 |     pub fn code(&self) -> &str {
+    |            ^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+345 ~     #[must_use] 
+346 ~     pub fn code(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:349:12
+    |
+349 |     pub fn reason(&self) -> &str {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+349 ~     #[must_use] 
+350 ~     pub fn reason(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:353:12
+    |
+353 |     pub fn subject(&self) -> Option<&str> {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+353 ~     #[must_use] 
+354 ~     pub fn subject(&self) -> Option<&str> {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:357:12
+    |
+357 |     pub fn path(&self) -> Option<&str> {
+    |            ^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+357 ~     #[must_use] 
+358 ~     pub fn path(&self) -> Option<&str> {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:361:12
+    |
+361 |     pub fn line(&self) -> Option<u32> {
+    |            ^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+361 ~     #[must_use] 
+362 ~     pub fn line(&self) -> Option<u32> {
+    |
+
+error: item in documentation is missing backticks
+   --> crates/domain/src/context_pack.rs:367:67
+    |
+367 | /// the worker supplied a better-supported candidate section, not GraphWriter
+    |                                                                   ^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#doc_markdown
+help: try
+    |
+367 - /// the worker supplied a better-supported candidate section, not GraphWriter
+367 + /// the worker supplied a better-supported candidate section, not `GraphWriter`
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/context_pack.rs:381:5
+    |
+381 | /     pub fn new(
+382 | |         bundle_id: String,
+383 | |         project: ProjectRef,
+384 | |         graph_version: String,
+...   |
+388 | |         unknowns: Vec<UnknownClaim>,
+389 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:443:12
+    |
+443 |     pub fn bundle_id(&self) -> &str {
+    |            ^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+443 ~     #[must_use] 
+444 ~     pub fn bundle_id(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:447:12
+    |
+447 |     pub fn project(&self) -> &ProjectRef {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+447 ~     #[must_use] 
+448 ~     pub fn project(&self) -> &ProjectRef {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:451:12
+    |
+451 |     pub fn graph_version(&self) -> &str {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+451 ~     #[must_use] 
+452 ~     pub fn graph_version(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:455:12
+    |
+455 |     pub fn scope(&self) -> &ScopeSelector {
+    |            ^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+455 ~     #[must_use] 
+456 ~     pub fn scope(&self) -> &ScopeSelector {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:459:12
+    |
+459 |     pub fn verified(&self) -> &[FactAssertion] {
+    |            ^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+459 ~     #[must_use] 
+460 ~     pub fn verified(&self) -> &[FactAssertion] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:463:12
+    |
+463 |     pub fn heuristic(&self) -> &[FactAssertion] {
+    |            ^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+463 ~     #[must_use] 
+464 ~     pub fn heuristic(&self) -> &[FactAssertion] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:467:12
+    |
+467 |     pub fn unknowns(&self) -> &[UnknownClaim] {
+    |            ^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+467 ~     #[must_use] 
+468 ~     pub fn unknowns(&self) -> &[UnknownClaim] {
+    |
+
+error: field name starts with the struct's name
+   --> crates/domain/src/context_pack.rs:476:5
+    |
+476 |     handoff_id: String,
+    |     ^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#struct_field_names
+    = note: `-D clippy::struct-field-names` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::struct_field_names)]`
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/context_pack.rs:489:5
+    |
+489 | /     pub fn new(
+490 | |         handoff_id: String,
+491 | |         sender: String,
+492 | |         recipient: Option<String>,
+...   |
+498 | |         expires_at_ms: u64,
+499 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:542:12
+    |
+542 |     pub fn handoff_id(&self) -> &str {
+    |            ^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+542 ~     #[must_use] 
+543 ~     pub fn handoff_id(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:546:12
+    |
+546 |     pub fn sender(&self) -> &str {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+546 ~     #[must_use] 
+547 ~     pub fn sender(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:550:12
+    |
+550 |     pub fn recipient(&self) -> Option<&str> {
+    |            ^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+550 ~     #[must_use] 
+551 ~     pub fn recipient(&self) -> Option<&str> {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:554:12
+    |
+554 |     pub fn project(&self) -> &ProjectRef {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+554 ~     #[must_use] 
+555 ~     pub fn project(&self) -> &ProjectRef {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:558:12
+    |
+558 |     pub fn graph_version(&self) -> &str {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+558 ~     #[must_use] 
+559 ~     pub fn graph_version(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:562:12
+    |
+562 |     pub fn scope(&self) -> &ScopeSelector {
+    |            ^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+562 ~     #[must_use] 
+563 ~     pub fn scope(&self) -> &ScopeSelector {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:566:12
+    |
+566 |     pub fn context_ref(&self) -> &str {
+    |            ^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+566 ~     #[must_use] 
+567 ~     pub fn context_ref(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:570:12
+    |
+570 |     pub fn claims(&self) -> &ClaimBundle {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+570 ~     #[must_use] 
+571 ~     pub fn claims(&self) -> &ClaimBundle {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:574:12
+    |
+574 |     pub fn expires_at_ms(&self) -> u64 {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+574 ~     #[must_use] 
+575 ~     pub fn expires_at_ms(&self) -> u64 {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:590:12
+    |
+590 |     pub fn as_str(self) -> &'static str {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+590 ~     #[must_use] 
+591 ~     pub fn as_str(self) -> &'static str {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/context_pack.rs:601:5
+    |
+601 |     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: method `from_str` can be confused for the standard trait method `std::str::FromStr::from_str`
+   --> crates/domain/src/context_pack.rs:601:5
+    |
+601 | /     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+602 | |         match value {
+603 | |             "source" => Ok(Self::Source),
+604 | |             "document" => Ok(Self::Document),
+...   |
+611 | |     }
+    | |_____^
+    |
+    = help: consider implementing the trait `std::str::FromStr` or choosing a less ambiguous method name
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#should_implement_trait
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/context_pack.rs:622:5
+    |
+622 |     pub fn new(mut origins: Vec<UntrustedContentOrigin>) -> Result<Self, DomainError> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:630:12
+    |
+630 |     pub fn origins(&self) -> &[UntrustedContentOrigin] {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+630 ~     #[must_use] 
+631 ~     pub fn origins(&self) -> &[UntrustedContentOrigin] {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/context_pack.rs:648:5
+    |
+648 | /     pub fn new(
+649 | |         pack_id: String,
+650 | |         operation: ContextOperation,
+651 | |         scope: ScopeSelector,
+...   |
+654 | |         untrusted_content: UntrustedContentLabel,
+655 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this `if` statement can be collapsed
+   --> crates/domain/src/context_pack.rs:662:9
+    |
+662 | /         if let Some(handoff) = &handoff {
+663 | |             if handoff.project() != scope.project()
+664 | |                 || handoff.graph_version() != scope.graph_version()
+665 | |                 || handoff.scope() != &scope
+...   |
+669 | |         }
+    | |_________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#collapsible_if
+    = note: `-D clippy::collapsible-if` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::collapsible_if)]`
+help: collapse nested if block
+    |
+662 ~         if let Some(handoff) = &handoff
+663 ~             && (handoff.project() != scope.project()
+664 |                 || handoff.graph_version() != scope.graph_version()
+665 ~                 || handoff.scope() != &scope)
+666 |             {
+667 |                 return Err(DomainError::Invalid("handoff widens context scope"));
+668 ~             }
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:680:12
+    |
+680 |     pub fn pack_id(&self) -> &str {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+680 ~     #[must_use] 
+681 ~     pub fn pack_id(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:684:12
+    |
+684 |     pub fn operation(&self) -> ContextOperation {
+    |            ^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+684 ~     #[must_use] 
+685 ~     pub fn operation(&self) -> ContextOperation {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:688:12
+    |
+688 |     pub fn scope(&self) -> &ScopeSelector {
+    |            ^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+688 ~     #[must_use] 
+689 ~     pub fn scope(&self) -> &ScopeSelector {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:692:12
+    |
+692 |     pub fn grant(&self) -> &CapabilityGrant {
+    |            ^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+692 ~     #[must_use] 
+693 ~     pub fn grant(&self) -> &CapabilityGrant {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:696:12
+    |
+696 |     pub fn handoff(&self) -> Option<&Handoff> {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+696 ~     #[must_use] 
+697 ~     pub fn handoff(&self) -> Option<&Handoff> {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/context_pack.rs:700:12
+    |
+700 |     pub fn untrusted_content(&self) -> &UntrustedContentLabel {
+    |            ^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+700 ~     #[must_use] 
+701 ~     pub fn untrusted_content(&self) -> &UntrustedContentLabel {
+    |
+
+error: writing `&mut Vec` instead of `&mut [_]` involves a new object where a slice will do
+   --> crates/domain/src/context_pack.rs:734:37
+    |
+734 | fn canonical_unique<T: Ord>(values: &mut Vec<T>, message: &'static str) -> Result<(), DomainError> {
+    |                                     ^^^^^^^^^^^ help: change this to: `&mut [T]`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#ptr_arg
+    = note: `-D clippy::ptr-arg` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::ptr_arg)]`
+
+error: item in documentation is missing backticks
+ --> crates/domain/src/rpc_launch.rs:4:12
+  |
+4 | /// Unlike CheckCommand, stdin carries RPC frames. Environment values remain host-owned.
+  |            ^^^^^^^^^^^^
+  |
+  = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#doc_markdown
+help: try
+  |
+4 - /// Unlike CheckCommand, stdin carries RPC frames. Environment values remain host-owned.
+4 + /// Unlike `CheckCommand`, stdin carries RPC frames. Environment values remain host-owned.
+  |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/rpc_launch.rs:26:5
+   |
+26 | /     pub fn new(
+27 | |         program: String,
+28 | |         args: Vec<String>,
+29 | |         cwd: String,
+...  |
+35 | |         stderr_max_bytes: u64,
+36 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_launch.rs:60:12
+   |
+60 |     pub fn program(&self) -> &str {
+   |            ^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+60 ~     #[must_use] 
+61 ~     pub fn program(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_launch.rs:63:12
+   |
+63 |     pub fn args(&self) -> &[String] {
+   |            ^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+63 ~     #[must_use] 
+64 ~     pub fn args(&self) -> &[String] {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_launch.rs:66:12
+   |
+66 |     pub fn cwd(&self) -> &str {
+   |            ^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+66 ~     #[must_use] 
+67 ~     pub fn cwd(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_launch.rs:69:12
+   |
+69 |     pub fn executable_sha256(&self) -> &str {
+   |            ^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+69 ~     #[must_use] 
+70 ~     pub fn executable_sha256(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_launch.rs:72:12
+   |
+72 |     pub fn environment_sha256(&self) -> &str {
+   |            ^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+72 ~     #[must_use] 
+73 ~     pub fn environment_sha256(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_launch.rs:75:12
+   |
+75 |     pub fn timeout_ms(&self) -> u64 {
+   |            ^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+75 ~     #[must_use] 
+76 ~     pub fn timeout_ms(&self) -> u64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_launch.rs:78:12
+   |
+78 |     pub fn cleanup_timeout_ms(&self) -> u64 {
+   |            ^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+78 ~     #[must_use] 
+79 ~     pub fn cleanup_timeout_ms(&self) -> u64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_launch.rs:81:12
+   |
+81 |     pub fn stdout_max_bytes(&self) -> u64 {
+   |            ^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+81 ~     #[must_use] 
+82 ~     pub fn stdout_max_bytes(&self) -> u64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_launch.rs:84:12
+   |
+84 |     pub fn stderr_max_bytes(&self) -> u64 {
+   |            ^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+84 ~     #[must_use] 
+85 ~     pub fn stderr_max_bytes(&self) -> u64 {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/rpc_launch.rs:108:5
+    |
+108 | /     pub fn new(
+109 | |         epoch: String,
+110 | |         client_name: String,
+111 | |         client_version: String,
+...   |
+114 | |         max_frame: u32,
+115 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:131:12
+    |
+131 |     pub fn epoch(&self) -> &str {
+    |            ^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+131 ~     #[must_use] 
+132 ~     pub fn epoch(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:134:12
+    |
+134 |     pub fn client_name(&self) -> &str {
+    |            ^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+134 ~     #[must_use] 
+135 ~     pub fn client_name(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:137:12
+    |
+137 |     pub fn client_version(&self) -> &str {
+    |            ^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+137 ~     #[must_use] 
+138 ~     pub fn client_version(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:140:12
+    |
+140 |     pub fn experimental(&self) -> bool {
+    |            ^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+140 ~     #[must_use] 
+141 ~     pub fn experimental(&self) -> bool {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:143:12
+    |
+143 |     pub fn max_pending(&self) -> u32 {
+    |            ^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+143 ~     #[must_use] 
+144 ~     pub fn max_pending(&self) -> u32 {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:146:12
+    |
+146 |     pub fn max_frame(&self) -> u32 {
+    |            ^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+146 ~     #[must_use] 
+147 ~     pub fn max_frame(&self) -> u32 {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/rpc_launch.rs:173:5
+    |
+173 | /     pub fn new(
+174 | |         id: String,
+175 | |         task: TaskSpec,
+176 | |         origin_lease: Lease,
+...   |
+181 | |         connection: RpcConnectionSpec,
+182 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:213:12
+    |
+213 |     pub fn id(&self) -> &str {
+    |            ^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+213 ~     #[must_use] 
+214 ~     pub fn id(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:216:12
+    |
+216 |     pub fn task(&self) -> &TaskSpec {
+    |            ^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+216 ~     #[must_use] 
+217 ~     pub fn task(&self) -> &TaskSpec {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:219:12
+    |
+219 |     pub fn origin_lease(&self) -> &Lease {
+    |            ^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+219 ~     #[must_use] 
+220 ~     pub fn origin_lease(&self) -> &Lease {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:222:12
+    |
+222 |     pub fn host_id(&self) -> &str {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+222 ~     #[must_use] 
+223 ~     pub fn host_id(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:225:12
+    |
+225 |     pub fn approval_id(&self) -> &str {
+    |            ^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+225 ~     #[must_use] 
+226 ~     pub fn approval_id(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:228:12
+    |
+228 |     pub fn execution_snapshot(&self) -> &ProjectRef {
+    |            ^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+228 ~     #[must_use] 
+229 ~     pub fn execution_snapshot(&self) -> &ProjectRef {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:231:12
+    |
+231 |     pub fn process(&self) -> &RpcProcessSpec {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+231 ~     #[must_use] 
+232 ~     pub fn process(&self) -> &RpcProcessSpec {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_launch.rs:234:12
+    |
+234 |     pub fn connection(&self) -> &RpcConnectionSpec {
+    |            ^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+234 ~     #[must_use] 
+235 ~     pub fn connection(&self) -> &RpcConnectionSpec {
+    |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_spawn.rs:12:12
+   |
+12 |     pub fn as_str(self) -> &'static str {
+   |            ^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+12 ~     #[must_use] 
+13 ~     pub fn as_str(self) -> &'static str {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/rpc_spawn.rs:30:5
+   |
+30 | /     pub fn new(
+31 | |         launch: RpcLaunchSpec,
+32 | |         observed_at_ms: i64,
+33 | |         disposition: RpcSpawnDisposition,
+34 | |         process_id: Option<u32>,
+35 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this boolean expression can be simplified
+  --> crates/domain/src/rpc_spawn.rs:42:45
+   |
+42 |             RpcSpawnDisposition::Spawned => !process_id.is_some_and(|pid| pid > 0),
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try: `process_id.is_none_or(|pid| pid <= 0)`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#nonminimal_bool
+   = note: `-D clippy::nonminimal-bool` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::nonminimal_bool)]`
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_spawn.rs:56:12
+   |
+56 |     pub fn launch(&self) -> &RpcLaunchSpec {
+   |            ^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+56 ~     #[must_use] 
+57 ~     pub fn launch(&self) -> &RpcLaunchSpec {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_spawn.rs:59:12
+   |
+59 |     pub fn observed_at_ms(&self) -> i64 {
+   |            ^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+59 ~     #[must_use] 
+60 ~     pub fn observed_at_ms(&self) -> i64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_spawn.rs:62:12
+   |
+62 |     pub fn disposition(&self) -> RpcSpawnDisposition {
+   |            ^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+62 ~     #[must_use] 
+63 ~     pub fn disposition(&self) -> RpcSpawnDisposition {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_spawn.rs:66:12
+   |
+66 |     pub fn process_id(&self) -> Option<u32> {
+   |            ^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+66 ~     #[must_use] 
+67 ~     pub fn process_id(&self) -> Option<u32> {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/rpc_terminal.rs:20:5
+   |
+20 |     pub fn new(id: i64, method: String) -> Result<Self, DomainError> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_terminal.rs:28:12
+   |
+28 |     pub fn id(&self) -> i64 {
+   |            ^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+28 ~     #[must_use] 
+29 ~     pub fn id(&self) -> i64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_terminal.rs:31:12
+   |
+31 |     pub fn method(&self) -> &str {
+   |            ^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+31 ~     #[must_use] 
+32 ~     pub fn method(&self) -> &str {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/rpc_terminal.rs:44:5
+   |
+44 |     pub fn new(total: u64, written: u64, failed: bool) -> Result<Self, DomainError> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_terminal.rs:54:12
+   |
+54 |     pub fn total(&self) -> u64 {
+   |            ^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+54 ~     #[must_use] 
+55 ~     pub fn total(&self) -> u64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_terminal.rs:57:12
+   |
+57 |     pub fn written(&self) -> u64 {
+   |            ^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+57 ~     #[must_use] 
+58 ~     pub fn written(&self) -> u64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/rpc_terminal.rs:60:12
+   |
+60 |     pub fn failed(&self) -> bool {
+   |            ^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+60 ~     #[must_use] 
+61 ~     pub fn failed(&self) -> bool {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/rpc_terminal.rs:86:5
+   |
+86 | /     pub fn new(
+87 | |         spawn: RpcSpawnObservation,
+88 | |         output_run: AnalysisRun,
+89 | |         finished_at_ms: i64,
+...  |
+95 | |         input_progress: Option<RpcInputProgress>,
+96 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this `if` statement can be collapsed
+   --> crates/domain/src/rpc_terminal.rs:140:13
+    |
+140 | /             if let Some(output) = artifact {
+141 | |                 if output.project() != launch.execution_snapshot()
+142 | |                     || output.graph_version() != launch.task().graph_version()
+143 | |                     || output.analysis_run() != output_run.id()
+...   |
+151 | |             }
+    | |_____________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#collapsible_if
+help: collapse nested if block
+    |
+140 ~             if let Some(output) = artifact
+141 ~                 && (output.project() != launch.execution_snapshot()
+142 |                     || output.graph_version() != launch.task().graph_version()
+143 |                     || output.analysis_run() != output_run.id()
+144 |                     || output.kind() != kind
+145 ~                     || output.byte_length() > cap)
+146 |                 {
+...
+149 |                     ));
+150 ~                 }
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_terminal.rs:186:12
+    |
+186 |     pub fn spawn(&self) -> &RpcSpawnObservation {
+    |            ^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+186 ~     #[must_use] 
+187 ~     pub fn spawn(&self) -> &RpcSpawnObservation {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_terminal.rs:189:12
+    |
+189 |     pub fn output_run(&self) -> &AnalysisRun {
+    |            ^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+189 ~     #[must_use] 
+190 ~     pub fn output_run(&self) -> &AnalysisRun {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_terminal.rs:192:12
+    |
+192 |     pub fn finished_at_ms(&self) -> i64 {
+    |            ^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+192 ~     #[must_use] 
+193 ~     pub fn finished_at_ms(&self) -> i64 {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_terminal.rs:195:12
+    |
+195 |     pub fn supervised_elapsed_ms(&self) -> u64 {
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+195 ~     #[must_use] 
+196 ~     pub fn supervised_elapsed_ms(&self) -> u64 {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_terminal.rs:198:12
+    |
+198 |     pub fn stdout(&self) -> Option<&Artifact> {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+198 ~     #[must_use] 
+199 ~     pub fn stdout(&self) -> Option<&Artifact> {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_terminal.rs:201:12
+    |
+201 |     pub fn stderr(&self) -> Option<&Artifact> {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+201 ~     #[must_use] 
+202 ~     pub fn stderr(&self) -> Option<&Artifact> {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_terminal.rs:204:12
+    |
+204 |     pub fn completion(&self) -> &ExecutionCompletion {
+    |            ^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+204 ~     #[must_use] 
+205 ~     pub fn completion(&self) -> &ExecutionCompletion {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_terminal.rs:207:12
+    |
+207 |     pub fn pending(&self) -> &[UncertainRpc] {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+207 ~     #[must_use] 
+208 ~     pub fn pending(&self) -> &[UncertainRpc] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/rpc_terminal.rs:210:12
+    |
+210 |     pub fn input_progress(&self) -> Option<RpcInputProgress> {
+    |            ^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+210 ~     #[must_use] 
+211 ~     pub fn input_progress(&self) -> Option<RpcInputProgress> {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/execution_plan.rs:11:5
+   |
+11 | /     pub fn new(
+12 | |         binding: CheckRunBinding,
+13 | |         host_id: String,
+14 | |         execution_snapshot: ProjectRef,
+15 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/execution_plan.rs:23:12
+   |
+23 |     pub fn binding(&self) -> &CheckRunBinding {
+   |            ^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+23 ~     #[must_use] 
+24 ~     pub fn binding(&self) -> &CheckRunBinding {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/execution_plan.rs:26:12
+   |
+26 |     pub fn host_id(&self) -> &str {
+   |            ^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+26 ~     #[must_use] 
+27 ~     pub fn host_id(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/execution_plan.rs:29:12
+   |
+29 |     pub fn execution_snapshot(&self) -> &ProjectRef {
+   |            ^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+29 ~     #[must_use] 
+30 ~     pub fn execution_snapshot(&self) -> &ProjectRef {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/execution_plan.rs:32:12
+   |
+32 |     pub fn matches_receipt(&self, receipt: &ExecutionReceipt) -> bool {
+   |            ^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+32 ~     #[must_use] 
+33 ~     pub fn matches_receipt(&self, receipt: &ExecutionReceipt) -> bool {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/execution_receipt.rs:19:5
+   |
+19 | /     pub fn new(
+20 | |         binding: CheckRunBinding,
+21 | |         host_id: String,
+22 | |         execution_snapshot: ProjectRef,
+...  |
+28 | |         completion: ExecutionCompletion,
+29 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this `if` statement can be collapsed
+  --> crates/domain/src/execution_receipt.rs:56:13
+   |
+56 | /             if let Some(output) = artifact {
+57 | |                 if output.project() != &execution_snapshot
+58 | |                     || output.graph_version() != binding.task().graph_version()
+59 | |                     || output.analysis_run() != binding.run_id()
+...  |
+68 | |             }
+   | |_____________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#collapsible_if
+help: collapse nested if block
+   |
+56 ~             if let Some(output) = artifact
+57 ~                 && (output.project() != &execution_snapshot
+58 |                     || output.graph_version() != binding.task().graph_version()
+...
+61 |                     || output.byte_length() > budget
+62 ~                     || output.id() == binding.candidate().id())
+63 |                 {
+...
+66 |                     ));
+67 ~                 }
+   |
+
+error: this `if` statement can be collapsed
+  --> crates/domain/src/execution_receipt.rs:70:9
+   |
+70 | /         if let (Some(out), Some(err)) = (&stdout, &stderr) {
+71 | |             if out.id() == err.id() {
+72 | |                 return Err(DomainError::Invalid(
+73 | |                     "stream artifact identities must differ",
+...  |
+76 | |         }
+   | |_________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#collapsible_if
+help: collapse nested if block
+   |
+70 ~         if let (Some(out), Some(err)) = (&stdout, &stderr)
+71 ~             && out.id() == err.id() {
+72 |                 return Err(DomainError::Invalid(
+73 |                     "stream artifact identities must differ",
+74 |                 ));
+75 ~             }
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/execution_receipt.rs:89:12
+   |
+89 |     pub fn binding(&self) -> &CheckRunBinding {
+   |            ^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+89 ~     #[must_use] 
+90 ~     pub fn binding(&self) -> &CheckRunBinding {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/execution_receipt.rs:92:12
+   |
+92 |     pub fn host_id(&self) -> &String {
+   |            ^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+92 ~     #[must_use] 
+93 ~     pub fn host_id(&self) -> &String {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/execution_receipt.rs:95:12
+   |
+95 |     pub fn execution_snapshot(&self) -> &ProjectRef {
+   |            ^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+95 ~     #[must_use] 
+96 ~     pub fn execution_snapshot(&self) -> &ProjectRef {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/execution_receipt.rs:98:12
+   |
+98 |     pub fn started_at_ms(&self) -> i64 {
+   |            ^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+98 ~     #[must_use] 
+99 ~     pub fn started_at_ms(&self) -> i64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/execution_receipt.rs:101:12
+    |
+101 |     pub fn finished_at_ms(&self) -> i64 {
+    |            ^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+101 ~     #[must_use] 
+102 ~     pub fn finished_at_ms(&self) -> i64 {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/execution_receipt.rs:104:12
+    |
+104 |     pub fn elapsed_ms(&self) -> u64 {
+    |            ^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+104 ~     #[must_use] 
+105 ~     pub fn elapsed_ms(&self) -> u64 {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/execution_receipt.rs:107:12
+    |
+107 |     pub fn stdout(&self) -> &Option<Artifact> {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+107 ~     #[must_use] 
+108 ~     pub fn stdout(&self) -> &Option<Artifact> {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/execution_receipt.rs:110:12
+    |
+110 |     pub fn stderr(&self) -> &Option<Artifact> {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+110 ~     #[must_use] 
+111 ~     pub fn stderr(&self) -> &Option<Artifact> {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/execution_receipt.rs:113:12
+    |
+113 |     pub fn completion(&self) -> &ExecutionCompletion {
+    |            ^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+113 ~     #[must_use] 
+114 ~     pub fn completion(&self) -> &ExecutionCompletion {
+    |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/fact.rs:20:12
+   |
+20 |     pub fn as_str(self) -> &'static str {
+   |            ^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+20 ~     #[must_use] 
+21 ~     pub fn as_str(self) -> &'static str {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/fact.rs:32:5
+   |
+32 |     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: method `from_str` can be confused for the standard trait method `std::str::FromStr::from_str`
+  --> crates/domain/src/fact.rs:32:5
+   |
+32 | /     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+33 | |         match value {
+34 | |             "parser" => Ok(Self::Parser),
+35 | |             "resolver" => Ok(Self::Resolver),
+...  |
+43 | |     }
+   | |_____^
+   |
+   = help: consider implementing the trait `std::str::FromStr` or choosing a less ambiguous method name
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#should_implement_trait
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/fact.rs:59:12
+   |
+59 |     pub fn as_str(self) -> &'static str {
+   |            ^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+59 ~     #[must_use] 
+60 ~     pub fn as_str(self) -> &'static str {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/fact.rs:70:5
+   |
+70 |     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: method `from_str` can be confused for the standard trait method `std::str::FromStr::from_str`
+  --> crates/domain/src/fact.rs:70:5
+   |
+70 | /     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+71 | |         match value {
+72 | |             "source" => Ok(Self::Source),
+73 | |             "artifact" => Ok(Self::Artifact),
+...  |
+80 | |     }
+   | |_____^
+   |
+   = help: consider implementing the trait `std::str::FromStr` or choosing a less ambiguous method name
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#should_implement_trait
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/fact.rs:92:5
+   |
+92 |     pub fn new(id: String, kind: EvidenceKind) -> Result<Self, DomainError> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/fact.rs:97:12
+   |
+97 |     pub fn id(&self) -> &str {
+   |            ^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+97 ~     #[must_use] 
+98 ~     pub fn id(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:101:12
+    |
+101 |     pub fn kind(&self) -> EvidenceKind {
+    |            ^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+101 ~     #[must_use] 
+102 ~     pub fn kind(&self) -> EvidenceKind {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/fact.rs:115:5
+    |
+115 |     pub fn new(analyzer: String, version: String, run_id: String) -> Result<Self, DomainError> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:126:12
+    |
+126 |     pub fn analyzer(&self) -> &str {
+    |            ^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+126 ~     #[must_use] 
+127 ~     pub fn analyzer(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:130:12
+    |
+130 |     pub fn version(&self) -> &str {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+130 ~     #[must_use] 
+131 ~     pub fn version(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:134:12
+    |
+134 |     pub fn run_id(&self) -> &str {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+134 ~     #[must_use] 
+135 ~     pub fn run_id(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:162:12
+    |
+162 |     pub fn state(&self) -> ClaimState {
+    |            ^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+162 ~     #[must_use] 
+163 ~     pub fn state(&self) -> ClaimState {
+    |
+
+error: item in documentation is missing backticks
+   --> crates/domain/src/fact.rs:172:44
+    |
+172 | /// Trust state of a graph assertion. Only GraphWriter can create Accepted.
+    |                                            ^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#doc_markdown
+help: try
+    |
+172 - /// Trust state of a graph assertion. Only GraphWriter can create Accepted.
+172 + /// Trust state of a graph assertion. Only `GraphWriter` can create Accepted.
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:183:12
+    |
+183 |     pub fn as_str(self) -> &'static str {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+183 ~     #[must_use] 
+184 ~     pub fn as_str(self) -> &'static str {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/fact.rs:193:5
+    |
+193 |     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: method `from_str` can be confused for the standard trait method `std::str::FromStr::from_str`
+   --> crates/domain/src/fact.rs:193:5
+    |
+193 | /     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+194 | |         match value {
+195 | |             "candidate" => Ok(Self::Candidate),
+196 | |             "accepted" => Ok(Self::Accepted),
+...   |
+202 | |     }
+    | |_____^
+    |
+    = help: consider implementing the trait `std::str::FromStr` or choosing a less ambiguous method name
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#should_implement_trait
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/fact.rs:222:5
+    |
+222 | /     pub fn new(
+223 | |         receipt_id: String,
+224 | |         assertion_id: String,
+225 | |         project: ProjectRef,
+...   |
+230 | |         verified_at_ms: i64,
+231 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:254:12
+    |
+254 |     pub fn receipt_id(&self) -> &str {
+    |            ^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+254 ~     #[must_use] 
+255 ~     pub fn receipt_id(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:258:12
+    |
+258 |     pub fn assertion_id(&self) -> &str {
+    |            ^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+258 ~     #[must_use] 
+259 ~     pub fn assertion_id(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:262:12
+    |
+262 |     pub fn project(&self) -> &ProjectRef {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+262 ~     #[must_use] 
+263 ~     pub fn project(&self) -> &ProjectRef {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:266:12
+    |
+266 |     pub fn graph_version(&self) -> &str {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+266 ~     #[must_use] 
+267 ~     pub fn graph_version(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:270:12
+    |
+270 |     pub fn evidence(&self) -> &[EvidenceRef] {
+    |            ^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+270 ~     #[must_use] 
+271 ~     pub fn evidence(&self) -> &[EvidenceRef] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:274:12
+    |
+274 |     pub fn verifier(&self) -> &str {
+    |            ^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+274 ~     #[must_use] 
+275 ~     pub fn verifier(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:278:12
+    |
+278 |     pub fn verifier_version(&self) -> &str {
+    |            ^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+278 ~     #[must_use] 
+279 ~     pub fn verifier_version(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:282:12
+    |
+282 |     pub fn verified_at_ms(&self) -> i64 {
+    |            ^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+282 ~     #[must_use] 
+283 ~     pub fn verified_at_ms(&self) -> i64 {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/fact.rs:306:5
+    |
+306 | /     pub fn candidate(
+307 | |         assertion_id: String,
+308 | |         project: ProjectRef,
+309 | |         graph_version: String,
+...   |
+315 | |         producer: Producer,
+316 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/fact.rs:337:5
+    |
+337 | /     pub fn from_persistence(
+338 | |         assertion_id: String,
+339 | |         project: ProjectRef,
+340 | |         graph_version: String,
+...   |
+348 | |         decision: Option<ClaimDecision>,
+349 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:367:12
+    |
+367 |     pub fn assertion_id(&self) -> &str {
+    |            ^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+367 ~     #[must_use] 
+368 ~     pub fn assertion_id(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:371:12
+    |
+371 |     pub fn project(&self) -> &ProjectRef {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+371 ~     #[must_use] 
+372 ~     pub fn project(&self) -> &ProjectRef {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:375:12
+    |
+375 |     pub fn graph_version(&self) -> &str {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+375 ~     #[must_use] 
+376 ~     pub fn graph_version(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:379:12
+    |
+379 |     pub fn subject(&self) -> &str {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+379 ~     #[must_use] 
+380 ~     pub fn subject(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:383:12
+    |
+383 |     pub fn predicate(&self) -> &str {
+    |            ^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+383 ~     #[must_use] 
+384 ~     pub fn predicate(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:387:12
+    |
+387 |     pub fn object(&self) -> &str {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+387 ~     #[must_use] 
+388 ~     pub fn object(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:391:12
+    |
+391 |     pub fn claim_state(&self) -> ClaimState {
+    |            ^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+391 ~     #[must_use] 
+392 ~     pub fn claim_state(&self) -> ClaimState {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:395:12
+    |
+395 |     pub fn assertion_kind(&self) -> AssertionKind {
+    |            ^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+395 ~     #[must_use] 
+396 ~     pub fn assertion_kind(&self) -> AssertionKind {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:399:12
+    |
+399 |     pub fn evidence(&self) -> &[EvidenceRef] {
+    |            ^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+399 ~     #[must_use] 
+400 ~     pub fn evidence(&self) -> &[EvidenceRef] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:403:12
+    |
+403 |     pub fn producer(&self) -> &Producer {
+    |            ^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+403 ~     #[must_use] 
+404 ~     pub fn producer(&self) -> &Producer {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:407:12
+    |
+407 |     pub fn decision(&self) -> Option<&ClaimDecision> {
+    |            ^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+407 ~     #[must_use] 
+408 ~     pub fn decision(&self) -> Option<&ClaimDecision> {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:466:12
+    |
+466 |     pub fn assertion(&self) -> &FactAssertion {
+    |            ^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+466 ~     #[must_use] 
+467 ~     pub fn assertion(&self) -> &FactAssertion {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/fact.rs:470:12
+    |
+470 |     pub fn into_assertion(self) -> FactAssertion {
+    |            ^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+470 ~     #[must_use] 
+471 ~     pub fn into_assertion(self) -> FactAssertion {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/fact.rs:481:5
+    |
+481 | /     pub fn accept(
+482 | |         &self,
+483 | |         candidate: FactAssertion,
+484 | |         receipt: VerificationReceipt,
+485 | |     ) -> Result<AcceptedFact, DomainError> {
+    | |__________________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/fact.rs:510:5
+    |
+510 | /     pub fn reject(
+511 | |         &self,
+512 | |         candidate: FactAssertion,
+513 | |         reason: String,
+514 | |     ) -> Result<FactAssertion, DomainError> {
+    | |___________________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/fact.rs:521:5
+    |
+521 | /     pub fn supersede(
+522 | |         &self,
+523 | |         fact: FactAssertion,
+524 | |         replacement_id: String,
+525 | |         reason: String,
+526 | |     ) -> Result<FactAssertion, DomainError> {
+    | |___________________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/fact.rs:540:5
+    |
+540 | /     pub fn expire(
+541 | |         &self,
+542 | |         fact: FactAssertion,
+543 | |         reason: String,
+544 | |     ) -> Result<FactAssertion, DomainError> {
+    | |___________________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: unused `self` argument
+   --> crates/domain/src/fact.rs:552:9
+    |
+552 |         &self,
+    |         ^^^^^
+    |
+    = help: consider refactoring to an associated function
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unused_self
+    = note: `-D clippy::unused-self` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::unused_self)]`
+
+error: this argument (0 byte) is passed by reference, but would be more efficient if passed by value (limit: 8 byte)
+   --> crates/domain/src/fact.rs:552:9
+    |
+552 |         &self,
+    |         ^^^^^ help: consider passing by value instead: `self`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#trivially_copy_pass_by_ref
+    = note: `-D clippy::trivially-copy-pass-by-ref` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::trivially_copy_pass_by_ref)]`
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/graph_version.rs:26:5
+   |
+26 | /     pub fn new(
+27 | |         id: String,
+28 | |         project: ProjectRef,
+29 | |         generation: u64,
+...  |
+33 | |         analyzer_version: String,
+34 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/graph_version.rs:48:12
+   |
+48 |     pub fn id(&self) -> &str {
+   |            ^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+48 ~     #[must_use] 
+49 ~     pub fn id(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/graph_version.rs:52:12
+   |
+52 |     pub fn project(&self) -> &ProjectRef {
+   |            ^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+52 ~     #[must_use] 
+53 ~     pub fn project(&self) -> &ProjectRef {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/graph_version.rs:56:12
+   |
+56 |     pub fn generation(&self) -> u64 {
+   |            ^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+56 ~     #[must_use] 
+57 ~     pub fn generation(&self) -> u64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/graph_version.rs:60:12
+   |
+60 |     pub fn source_manifest_sha256(&self) -> &str {
+   |            ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+60 ~     #[must_use] 
+61 ~     pub fn source_manifest_sha256(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/graph_version.rs:64:12
+   |
+64 |     pub fn extractor_version(&self) -> &str {
+   |            ^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+64 ~     #[must_use] 
+65 ~     pub fn extractor_version(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/graph_version.rs:68:12
+   |
+68 |     pub fn resolver_version(&self) -> &str {
+   |            ^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+68 ~     #[must_use] 
+69 ~     pub fn resolver_version(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/graph_version.rs:72:12
+   |
+72 |     pub fn analyzer_version(&self) -> &str {
+   |            ^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+72 ~     #[must_use] 
+73 ~     pub fn analyzer_version(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/graph_version.rs:78:12
+   |
+78 |     pub fn same_worktree(&self, other: &Self) -> bool {
+   |            ^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+78 ~     #[must_use] 
+79 ~     pub fn same_worktree(&self, other: &Self) -> bool {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/graph_version.rs:143:5
+    |
+143 | /     pub fn new(
+144 | |         version: GraphVersion,
+145 | |         observed_at_ms: u64,
+146 | |         expires_at_ms: Option<u64>,
+147 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/graph_version.rs:165:12
+    |
+165 |     pub fn version(&self) -> &GraphVersion {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+165 ~     #[must_use] 
+166 ~     pub fn version(&self) -> &GraphVersion {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/graph_version.rs:169:12
+    |
+169 |     pub fn observed_at_ms(&self) -> u64 {
+    |            ^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+169 ~     #[must_use] 
+170 ~     pub fn observed_at_ms(&self) -> u64 {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/graph_version.rs:173:12
+    |
+173 |     pub fn expires_at_ms(&self) -> Option<u64> {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+173 ~     #[must_use] 
+174 ~     pub fn expires_at_ms(&self) -> Option<u64> {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/graph_version.rs:210:5
+    |
+210 | /     pub fn new(
+211 | |         from: GraphVersion,
+212 | |         to: GraphVersion,
+213 | |         added_nodes: Vec<String>,
+...   |
+219 | |         invalidated_evidence: Vec<String>,
+220 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/graph_version.rs:246:12
+    |
+246 |     pub fn from(&self) -> &GraphVersion {
+    |            ^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+246 ~     #[must_use] 
+247 ~     pub fn from(&self) -> &GraphVersion {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/graph_version.rs:250:12
+    |
+250 |     pub fn to(&self) -> &GraphVersion {
+    |            ^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+250 ~     #[must_use] 
+251 ~     pub fn to(&self) -> &GraphVersion {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/graph_version.rs:254:12
+    |
+254 |     pub fn added_nodes(&self) -> &[String] {
+    |            ^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+254 ~     #[must_use] 
+255 ~     pub fn added_nodes(&self) -> &[String] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/graph_version.rs:258:12
+    |
+258 |     pub fn removed_nodes(&self) -> &[String] {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+258 ~     #[must_use] 
+259 ~     pub fn removed_nodes(&self) -> &[String] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/graph_version.rs:262:12
+    |
+262 |     pub fn changed_nodes(&self) -> &[String] {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+262 ~     #[must_use] 
+263 ~     pub fn changed_nodes(&self) -> &[String] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/graph_version.rs:266:12
+    |
+266 |     pub fn added_edges(&self) -> &[String] {
+    |            ^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+266 ~     #[must_use] 
+267 ~     pub fn added_edges(&self) -> &[String] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/graph_version.rs:270:12
+    |
+270 |     pub fn removed_edges(&self) -> &[String] {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+270 ~     #[must_use] 
+271 ~     pub fn removed_edges(&self) -> &[String] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/graph_version.rs:274:12
+    |
+274 |     pub fn changed_edges(&self) -> &[String] {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+274 ~     #[must_use] 
+275 ~     pub fn changed_edges(&self) -> &[String] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/graph_version.rs:278:12
+    |
+278 |     pub fn invalidated_evidence(&self) -> &[String] {
+    |            ^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+278 ~     #[must_use] 
+279 ~     pub fn invalidated_evidence(&self) -> &[String] {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/identity.rs:34:5
+   |
+34 |     pub fn new(repository_id: String, worktree_id: String) -> Result<Self, DomainError> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/identity.rs:80:5
+   |
+80 | /     pub fn new(
+81 | |         project: &ProjectRef,
+82 | |         language: String,
+83 | |         kind: String,
+...  |
+89 | |         content_fingerprint: String,
+90 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/identity.rs:201:5
+    |
+201 |     pub fn from_digest(digest: impl Into<String>) -> Result<Self, DomainError> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/identity.rs:208:5
+    |
+208 |     pub fn parse(value: impl Into<String>) -> Result<Self, DomainError> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/identity.rs:239:5
+    |
+239 | /     pub fn new(
+240 | |         source: NodeId,
+241 | |         target: NodeId,
+242 | |         kind: String,
+243 | |         discriminator: String,
+244 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/identity.rs:286:5
+    |
+286 |     pub fn from_digest(digest: impl Into<String>) -> Result<Self, DomainError> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/identity.rs:293:5
+    |
+293 |     pub fn parse(value: impl Into<String>) -> Result<Self, DomainError> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/integration_decision.rs:22:5
+   |
+22 | /     pub fn new(
+23 | |         task: TaskSpec,
+24 | |         candidate: Artifact,
+25 | |         policy: RequiredChecks,
+...  |
+28 | |         verifier_version: String,
+29 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/integration_decision.rs:84:12
+   |
+84 |     pub fn task(&self) -> &TaskSpec {
+   |            ^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+84 ~     #[must_use] 
+85 ~     pub fn task(&self) -> &TaskSpec {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/integration_decision.rs:87:12
+   |
+87 |     pub fn candidate(&self) -> &Artifact {
+   |            ^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+87 ~     #[must_use] 
+88 ~     pub fn candidate(&self) -> &Artifact {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/integration_decision.rs:90:12
+   |
+90 |     pub fn policy(&self) -> &RequiredChecks {
+   |            ^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+90 ~     #[must_use] 
+91 ~     pub fn policy(&self) -> &RequiredChecks {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/integration_decision.rs:93:12
+   |
+93 |     pub fn receipts(&self) -> &[ExecutionReceipt] {
+   |            ^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+93 ~     #[must_use] 
+94 ~     pub fn receipts(&self) -> &[ExecutionReceipt] {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/integration_decision.rs:96:12
+   |
+96 |     pub fn accepted_at_ms(&self) -> i64 {
+   |            ^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+96 ~     #[must_use] 
+97 ~     pub fn accepted_at_ms(&self) -> i64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/integration_decision.rs:99:12
+   |
+99 |     pub fn verifier_version(&self) -> &str {
+   |            ^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+99 ~     #[must_use] 
+100~     pub fn verifier_version(&self) -> &str {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/target_verification.rs:15:5
+   |
+15 | /     pub fn new(
+16 | |         task: TaskSpec,
+17 | |         observed_target: ProjectRef,
+18 | |         observed_at_ms: i64,
+19 | |         verifier_version: String,
+20 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/target_verification.rs:40:12
+   |
+40 |     pub fn task(&self) -> &TaskSpec {
+   |            ^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+40 ~     #[must_use] 
+41 ~     pub fn task(&self) -> &TaskSpec {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/target_verification.rs:43:12
+   |
+43 |     pub fn observed_target(&self) -> &ProjectRef {
+   |            ^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+43 ~     #[must_use] 
+44 ~     pub fn observed_target(&self) -> &ProjectRef {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/target_verification.rs:46:12
+   |
+46 |     pub fn observed_at_ms(&self) -> i64 {
+   |            ^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+46 ~     #[must_use] 
+47 ~     pub fn observed_at_ms(&self) -> i64 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/target_verification.rs:49:12
+   |
+49 |     pub fn verifier_version(&self) -> &str {
+   |            ^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+49 ~     #[must_use] 
+50 ~     pub fn verifier_version(&self) -> &str {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/evidence.rs:21:5
+   |
+21 | /     pub fn new(
+22 | |         id: String,
+23 | |         project: ProjectRef,
+24 | |         graph_version: String,
+...  |
+29 | |         analysis_run: String,
+30 | |     ) -> Result<Self, DomainError> {
+   | |__________________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/evidence.rs:75:12
+   |
+75 |     pub fn id(&self) -> &str {
+   |            ^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+75 ~     #[must_use] 
+76 ~     pub fn id(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/evidence.rs:78:12
+   |
+78 |     pub fn project(&self) -> &ProjectRef {
+   |            ^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+78 ~     #[must_use] 
+79 ~     pub fn project(&self) -> &ProjectRef {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/evidence.rs:81:12
+   |
+81 |     pub fn graph_version(&self) -> &str {
+   |            ^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+81 ~     #[must_use] 
+82 ~     pub fn graph_version(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/evidence.rs:84:12
+   |
+84 |     pub fn path(&self) -> &str {
+   |            ^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+84 ~     #[must_use] 
+85 ~     pub fn path(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/evidence.rs:87:12
+   |
+87 |     pub fn content_sha256(&self) -> &str {
+   |            ^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+87 ~     #[must_use] 
+88 ~     pub fn content_sha256(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/evidence.rs:90:12
+   |
+90 |     pub fn start_line(&self) -> u32 {
+   |            ^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+90 ~     #[must_use] 
+91 ~     pub fn start_line(&self) -> u32 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/evidence.rs:93:12
+   |
+93 |     pub fn end_line(&self) -> u32 {
+   |            ^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+93 ~     #[must_use] 
+94 ~     pub fn end_line(&self) -> u32 {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/evidence.rs:96:12
+   |
+96 |     pub fn analysis_run(&self) -> &str {
+   |            ^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+96 ~     #[must_use] 
+97 ~     pub fn analysis_run(&self) -> &str {
+   |
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/execution.rs:54:12
+   |
+54 |     pub fn reported_check_outcome(&self) -> CheckOutcome {
+   |            ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+54 ~     #[must_use] 
+55 ~     pub fn reported_check_outcome(&self) -> CheckOutcome {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/sql_link.rs:22:5
+   |
+22 |     pub fn new(adapter: String, code: &SourceEvidence) -> Result<Self, DomainError> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/sql_link.rs:104:5
+    |
+104 | /     pub fn new(
+105 | |         adapter: String,
+106 | |         adapter_version: String,
+107 | |         code: SourceEvidence,
+108 | |         links: Vec<SqlLink>,
+109 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/lib.rs:61:5
+   |
+61 |     pub fn new(value: impl Into<String>) -> Result<Self, DomainError> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/lib.rs:67:12
+   |
+67 |     pub fn as_str(&self) -> &str {
+   |            ^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+67 ~     #[must_use] 
+68 ~     pub fn as_str(&self) -> &str {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+  --> crates/domain/src/lib.rs:82:5
+   |
+82 |     pub fn new(value: impl Into<String>) -> Result<Self, DomainError> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+  --> crates/domain/src/lib.rs:88:12
+   |
+88 |     pub fn as_str(&self) -> &str {
+   |            ^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+   |
+88 ~     #[must_use] 
+89 ~     pub fn as_str(&self) -> &str {
+   |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/lib.rs:104:5
+    |
+104 |     pub fn validate(&self) -> Result<(), DomainError> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/lib.rs:137:5
+    |
+137 | /     pub fn new(
+138 | |         id: TaskId,
+139 | |         project: ProjectRef,
+140 | |         graph_version: String,
+...   |
+147 | |         token_budget: u64,
+148 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:165:12
+    |
+165 |     pub fn id(&self) -> &TaskId {
+    |            ^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+165 ~     #[must_use] 
+166 ~     pub fn id(&self) -> &TaskId {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:168:12
+    |
+168 |     pub fn project(&self) -> &ProjectRef {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+168 ~     #[must_use] 
+169 ~     pub fn project(&self) -> &ProjectRef {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:171:12
+    |
+171 |     pub fn graph_version(&self) -> &str {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+171 ~     #[must_use] 
+172 ~     pub fn graph_version(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:174:12
+    |
+174 |     pub fn role(&self) -> &str {
+    |            ^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+174 ~     #[must_use] 
+175 ~     pub fn role(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:177:12
+    |
+177 |     pub fn account_lane(&self) -> &str {
+    |            ^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+177 ~     #[must_use] 
+178 ~     pub fn account_lane(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:180:12
+    |
+180 |     pub fn scope(&self) -> &[String] {
+    |            ^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+180 ~     #[must_use] 
+181 ~     pub fn scope(&self) -> &[String] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:183:12
+    |
+183 |     pub fn dependencies(&self) -> &[TaskId] {
+    |            ^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+183 ~     #[must_use] 
+184 ~     pub fn dependencies(&self) -> &[TaskId] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:186:12
+    |
+186 |     pub fn context_ref(&self) -> &str {
+    |            ^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+186 ~     #[must_use] 
+187 ~     pub fn context_ref(&self) -> &str {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:189:12
+    |
+189 |     pub fn expected_artifacts(&self) -> &[String] {
+    |            ^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+189 ~     #[must_use] 
+190 ~     pub fn expected_artifacts(&self) -> &[String] {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:192:12
+    |
+192 |     pub fn token_budget(&self) -> u64 {
+    |            ^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+192 ~     #[must_use] 
+193 ~     pub fn token_budget(&self) -> u64 {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/lib.rs:196:5
+    |
+196 |     pub fn validate(&self) -> Result<(), DomainError> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:241:12
+    |
+241 |     pub fn can_cancel(self) -> bool {
+    |            ^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+241 ~     #[must_use] 
+242 ~     pub fn can_cancel(self) -> bool {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:245:12
+    |
+245 |     pub fn as_db(self) -> &'static str {
+    |            ^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+245 ~     #[must_use] 
+246 ~     pub fn as_db(self) -> &'static str {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/lib.rs:256:5
+    |
+256 |     pub fn from_db(value: &str) -> Result<Self, DomainError> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:268:12
+    |
+268 |     pub fn satisfies_dependency(self) -> bool {
+    |            ^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+268 ~     #[must_use] 
+269 ~     pub fn satisfies_dependency(self) -> bool {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/lib.rs:282:5
+    |
+282 | /     pub fn issue(
+283 | |         task_id: TaskId,
+284 | |         owner: WorkerId,
+285 | |         fencing_token: i64,
+286 | |         expires_at_ms: i64,
+287 | |     ) -> Result<Self, DomainError> {
+    | |__________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:299:12
+    |
+299 |     pub fn task_id(&self) -> &TaskId {
+    |            ^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+299 ~     #[must_use] 
+300 ~     pub fn task_id(&self) -> &TaskId {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:302:12
+    |
+302 |     pub fn owner(&self) -> &WorkerId {
+    |            ^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+302 ~     #[must_use] 
+303 ~     pub fn owner(&self) -> &WorkerId {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:305:12
+    |
+305 |     pub fn fencing_token(&self) -> i64 {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+305 ~     #[must_use] 
+306 ~     pub fn fencing_token(&self) -> i64 {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:308:12
+    |
+308 |     pub fn expires_at_ms(&self) -> i64 {
+    |            ^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+308 ~     #[must_use] 
+309 ~     pub fn expires_at_ms(&self) -> i64 {
+    |
+
+error: this method could have a `#[must_use]` attribute
+   --> crates/domain/src/lib.rs:330:12
+    |
+330 |     pub fn as_str(self) -> &'static str {
+    |            ^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#must_use_candidate
+help: add the attribute
+    |
+330 ~     #[must_use] 
+331 ~     pub fn as_str(self) -> &'static str {
+    |
+
+error: docs for function returning `Result` missing `# Errors` section
+   --> crates/domain/src/lib.rs:347:5
+    |
+347 |     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#missing_errors_doc
+
+error: method `from_str` can be confused for the standard trait method `std::str::FromStr::from_str`
+   --> crates/domain/src/lib.rs:347:5
+    |
+347 | /     pub fn from_str(value: &str) -> Result<Self, DomainError> {
+348 | |         match value {
+349 | |             "rpc_launch_registered" => Ok(Self::RpcLaunchRegistered),
+350 | |             "rpc_launch_claimed" => Ok(Self::RpcLaunchClaimed),
+...   |
+363 | |     }
+    | |_____^
+    |
+    = help: consider implementing the trait `std::str::FromStr` or choosing a less ambiguous method name
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#should_implement_trait
+
+error: could not compile `graph-domain` (lib) due to 304 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/checks.rs:108:9
+    |
+108 | /         Artifact::new(
+109 | |             id.into(),
+110 | |             ProjectRef {
+111 | |                 repository_id: "repo".into(),
+...   |
+126 | |         .unwrap()
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+    = note: `-D clippy::unwrap-used` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::unwrap_used)]`
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/checks.rs:143:22
+    |
+143 |         let policy = RequiredChecks::new(vec!["test".into()]).unwrap();
+    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/checks.rs:152:22
+    |
+152 |         let policy = RequiredChecks::new(vec!["test".into()]).unwrap();
+    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/checks.rs:186:22
+    |
+186 |         let policy = RequiredChecks::new(vec!["test".into(), "lint".into()]).unwrap();
+    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:761:9
+    |
+761 | /         ScopeSelector::new(
+762 | |             project(),
+763 | |             "graph-v1".into(),
+764 | |             vec!["src/auth".into()],
+...   |
+768 | |         .unwrap()
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:772:9
+    |
+772 | /         FactAssertion::candidate(
+773 | |             id.into(),
+774 | |             project(),
+775 | |             "graph-v1".into(),
+...   |
+783 | |         .unwrap()
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:780:18
+    |
+780 |             vec![EvidenceRef::new("source-1".into(), EvidenceKind::Source).unwrap()],
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:781:13
+    |
+781 |             Producer::new("resolver".into(), "v1".into(), "run-1".into()).unwrap(),
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:787:9
+    |
+787 | /         CapabilityGrant::new(
+788 | |             "grant-1".into(),
+789 | |             "host".into(),
+790 | |             "worker-1".into(),
+...   |
+802 | |         .unwrap()
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:807:24
+    |
+807 |           let selected = ScopeSelector::new(
+    |  ________________________^
+808 | |             project(),
+809 | |             "g".into(),
+810 | |             vec!["src/z".into(), "src/a".into()],
+...   |
+814 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:879:22
+    |
+879 |           let bundle = ClaimBundle::new(
+    |  ______________________^
+880 | |             "bundle-1".into(),
+881 | |             project(),
+882 | |             "graph-v1".into(),
+...   |
+888 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:893:24
+    |
+893 |           let accepted = GraphWriter
+    |  ________________________^
+894 | |             .accept(
+895 | |                 claim("accepted"),
+896 | |                 VerificationReceipt::new(
+...   |
+908 | |             .unwrap()
+    | |_____________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:896:17
+    |
+896 | /                 VerificationReceipt::new(
+897 | |                     "receipt".into(),
+898 | |                     "accepted".into(),
+899 | |                     project(),
+...   |
+906 | |                 .unwrap(),
+    | |_________________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:901:26
+    |
+901 |                     vec![EvidenceRef::new("source-1".into(), EvidenceKind::Source).unwrap()],
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:926:22
+    |
+926 |           let claims = ClaimBundle::new(
+    |  ______________________^
+927 | |             "bundle-1".into(),
+928 | |             project(),
+929 | |             "graph-v1".into(),
+...   |
+935 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:936:23
+    |
+936 |           let handoff = Handoff::new(
+    |  _______________________^
+937 | |             "handoff-1".into(),
+938 | |             "worker-1".into(),
+939 | |             Some("worker-2".into()),
+...   |
+947 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:948:21
+    |
+948 |           let label = UntrustedContentLabel::new(vec![
+    |  _____________________^
+949 | |             UntrustedContentOrigin::Source,
+950 | |             UntrustedContentOrigin::ToolOutput,
+951 | |         ])
+952 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:953:20
+    |
+953 |           let pack = ContextPack::new(
+    |  ____________________^
+954 | |             "pack-1".into(),
+955 | |             ContextOperation::Trace,
+956 | |             scope(),
+...   |
+961 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:967:17
+    |
+967 | /                 ScopeSelector::new(project(), "graph-v1".into(), vec!["src".into()], vec![], 4)
+968 | |                     .unwrap(),
+    | |_____________________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/context_pack.rs:971:17
+    |
+971 |                 UntrustedContentLabel::new(vec![UntrustedContentOrigin::Source]).unwrap()
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:253:9
+    |
+253 | /         RpcProcessSpec::new(
+254 | |             "/owned/fixture".into(),
+255 | |             vec![
+256 | |                 "".into(),
+...   |
+269 | |         .unwrap()
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: empty String is being created manually
+   --> crates/domain/src/rpc_launch.rs:256:17
+    |
+256 |                 "".into(),
+    |                 ^^^^^^^^^ help: consider using: `String::new()`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#manual_string_new
+    = note: `-D clippy::manual-string-new` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::manual_string_new)]`
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:285:9
+    |
+285 |         RpcConnectionSpec::new("epoch".into(), "client".into(), "1".into(), false, 2, 4096).unwrap()
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:296:20
+    |
+296 |           let task = TaskSpec::new(
+    |  ____________________^
+297 | |             TaskId::new("task").unwrap(),
+298 | |             snapshot.clone(),
+299 | |             "graph".into(),
+...   |
+308 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:297:13
+    |
+297 |             TaskId::new("task").unwrap(),
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:310:13
+    |
+310 |             Lease::issue(task.id().clone(), WorkerId::new("worker").unwrap(), 1, 1000).unwrap();
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:310:45
+    |
+310 |             Lease::issue(task.id().clone(), WorkerId::new("worker").unwrap(), 1, 1000).unwrap();
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:311:9
+    |
+311 | /         RpcLaunchSpec::new(
+312 | |             "launch".into(),
+313 | |             task,
+314 | |             lease,
+...   |
+321 | |         .unwrap()
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:339:21
+    |
+339 |           let check = CheckCommand::new(
+    |  _____________________^
+340 | |             p.program.clone(),
+341 | |             p.args.clone(),
+342 | |             p.cwd.clone(),
+...   |
+350 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: empty String is being created manually
+   --> crates/domain/src/rpc_launch.rs:382:13
+    |
+382 |             "".into(),
+    |             ^^^^^^^^^ help: consider using: `String::new()`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#manual_string_new
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:401:20
+    |
+401 |           let spec = RpcConnectionSpec::new(
+    |  ____________________^
+402 | |             "e".repeat(256),
+403 | |             "c".into(),
+404 | |             "1".into(),
+...   |
+409 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: consider adding a `;` to the last statement for consistent formatting
+   --> crates/domain/src/rpc_launch.rs:424:21
+    |
+424 | /                     s.origin_lease = Lease::issue(
+425 | |                         TaskId::new("other-task").unwrap(),
+426 | |                         WorkerId::new("worker").unwrap(),
+427 | |                         1,
+...   |
+430 | |                     .unwrap()
+    | |_____________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#semicolon_if_nothing_returned
+help: add a `;` here
+    |
+424 |                     s.origin_lease = Lease::issue(
+...
+429 |                     )
+430 ~                     .unwrap();
+    |
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:424:38
+    |
+424 |                       s.origin_lease = Lease::issue(
+    |  ______________________________________^
+425 | |                         TaskId::new("other-task").unwrap(),
+426 | |                         WorkerId::new("worker").unwrap(),
+427 | |                         1,
+...   |
+430 | |                     .unwrap()
+    | |_____________________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:425:25
+    |
+425 |                         TaskId::new("other-task").unwrap(),
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:426:25
+    |
+426 |                         WorkerId::new("worker").unwrap(),
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: consider adding a `;` to the last statement for consistent formatting
+   --> crates/domain/src/rpc_launch.rs:433:21
+    |
+433 | /                     s.origin_lease =
+434 | |                         Lease::issue(s.task.id().clone(), WorkerId::new("worker").unwrap(), 1, 0)
+435 | |                             .unwrap()
+    | |_____________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#semicolon_if_nothing_returned
+help: add a `;` here
+    |
+433 |                     s.origin_lease =
+434 |                         Lease::issue(s.task.id().clone(), WorkerId::new("worker").unwrap(), 1, 0)
+435 ~                             .unwrap();
+    |
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:434:25
+    |
+434 | /                         Lease::issue(s.task.id().clone(), WorkerId::new("worker").unwrap(), 1, 0)
+435 | |                             .unwrap()
+    | |_____________________________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:434:59
+    |
+434 |                         Lease::issue(s.task.id().clone(), WorkerId::new("worker").unwrap(), 1, 0)
+    |                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:449:20
+    |
+449 |         assert_eq!(rebuild_launch(original.clone()).unwrap(), original);
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_launch.rs:463:24
+    |
+463 |             assert_ne!(rebuild_launch(s).unwrap(), original, "case {case}");
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+  --> crates/domain/src/rpc_terminal_tests.rs:16:16
+   |
+16 |       let task = TaskSpec::new(
+   |  ________________^
+17 | |         TaskId::new("task").unwrap(),
+18 | |         project.clone(),
+19 | |         "graph".into(),
+...  |
+28 | |     .unwrap();
+   | |_____________^
+   |
+   = note: if this value is an `Err`, it will panic
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+  --> crates/domain/src/rpc_terminal_tests.rs:17:9
+   |
+17 |         TaskId::new("task").unwrap(),
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: if this value is an `Err`, it will panic
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+  --> crates/domain/src/rpc_terminal_tests.rs:29:17
+   |
+29 |     let lease = Lease::issue(task.id().clone(), WorkerId::new("worker").unwrap(), 1, 1000).unwrap();
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: if this value is an `Err`, it will panic
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+  --> crates/domain/src/rpc_terminal_tests.rs:29:49
+   |
+29 |     let lease = Lease::issue(task.id().clone(), WorkerId::new("worker").unwrap(), 1, 1000).unwrap();
+   |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: if this value is an `Err`, it will panic
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+  --> crates/domain/src/rpc_terminal_tests.rs:30:18
+   |
+30 |       let launch = RpcLaunchSpec::new(
+   |  __________________^
+31 | |         "launch".into(),
+32 | |         task,
+33 | |         lease,
+...  |
+52 | |     .unwrap();
+   | |_____________^
+   |
+   = note: if this value is an `Err`, it will panic
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+  --> crates/domain/src/rpc_terminal_tests.rs:37:9
+   |
+37 | /         RpcProcessSpec::new(
+38 | |             "fixture".into(),
+39 | |             vec![],
+40 | |             ".".into(),
+...  |
+48 | |         .unwrap(),
+   | |_________________^
+   |
+   = note: if this value is an `Err`, it will panic
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+  --> crates/domain/src/rpc_terminal_tests.rs:49:9
+   |
+49 | /         RpcConnectionSpec::new("epoch".into(), "client".into(), "1".into(), false, 2, 4096)
+50 | |             .unwrap(),
+   | |_____________________^
+   |
+   = note: if this value is an `Err`, it will panic
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+  --> crates/domain/src/rpc_terminal_tests.rs:53:15
+   |
+53 |       let run = AnalysisRun::new(
+   |  _______________^
+54 | |         "output-run".into(),
+55 | |         project,
+56 | |         "graph".into(),
+...  |
+62 | |     .unwrap();
+   | |_____________^
+   |
+   = note: if this value is an `Err`, it will panic
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+  --> crates/domain/src/rpc_terminal_tests.rs:65:5
+   |
+65 | /     RpcTerminalReceipt::new(
+66 | |         RpcSpawnObservation::new(launch, 100, RpcSpawnDisposition::Spawned, Some(7)).unwrap(),
+67 | |         run,
+68 | |         90,
+...  |
+82 | |     .unwrap()
+   | |_____________^
+   |
+   = note: if this value is an `Err`, it will panic
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+  --> crates/domain/src/rpc_terminal_tests.rs:66:9
+   |
+66 |         RpcSpawnObservation::new(launch, 100, RpcSpawnDisposition::Spawned, Some(7)).unwrap(),
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: if this value is an `Err`, it will panic
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+  --> crates/domain/src/rpc_terminal_tests.rs:79:14
+   |
+79 |         vec![UncertainRpc::new(2, "secret-method".into()).unwrap()],
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: if this value is an `Err`, it will panic
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+  --> crates/domain/src/rpc_terminal_tests.rs:80:14
+   |
+80 |         Some(RpcInputProgress::new(4096, 512, false).unwrap()),
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: if this value is an `Err`, it will panic
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+  --> crates/domain/src/rpc_terminal_tests.rs:85:5
+   |
+85 | /     Artifact::new(
+86 | |         id.into(),
+87 | |         run.project().clone(),
+88 | |         run.graph_version().into(),
+...  |
+96 | |     .unwrap()
+   | |_____________^
+   |
+   = note: if this value is an `Err`, it will panic
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_terminal_tests.rs:115:16
+    |
+115 |     assert_eq!(rebuild(r.clone()).unwrap(), r);
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on an `Option` value
+   --> crates/domain/src/rpc_terminal_tests.rs:120:16
+    |
+120 |     assert_eq!(r.stdout().unwrap().byte_length(), 20);
+    |                ^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is `None`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on an `Option` value
+   --> crates/domain/src/rpc_terminal_tests.rs:121:16
+    |
+121 |     assert_eq!(r.stderr().unwrap().byte_length(), 30);
+    |                ^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is `None`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on an `Option` value
+   --> crates/domain/src/rpc_terminal_tests.rs:125:16
+    |
+125 |     assert_eq!(r.input_progress().unwrap().written(), 512);
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is `None`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on an `Option` value
+   --> crates/domain/src/rpc_terminal_tests.rs:126:14
+    |
+126 |     assert!(!r.input_progress().unwrap().failed());
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is `None`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_terminal_tests.rs:139:19
+    |
+139 |         r.spawn = RpcSpawnObservation::new(r.spawn.launch().clone(), 0, disposition, None).unwrap();
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_terminal_tests.rs:189:23
+    |
+189 |             .map(|id| UncertainRpc::new(id, "method".into()).unwrap())
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: empty String is being created manually
+   --> crates/domain/src/rpc_terminal_tests.rs:196:20
+    |
+196 |     for method in ["".into(), " \n".into(), "a".repeat(257), "é".repeat(129)] {
+    |                    ^^^^^^^^^ help: consider using: `String::new()`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#manual_string_new
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_terminal_tests.rs:206:33
+    |
+206 |         r.input_progress = Some(RpcInputProgress::new(total, total, true).unwrap());
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_terminal_tests.rs:225:24
+    |
+225 |           r.output_run = AnalysisRun::new(
+    |  ________________________^
+226 | |             "output-run".into(),
+227 | |             project,
+228 | |             if change == 6 { "other" } else { "graph" }.into(),
+...   |
+234 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/rpc_terminal_tests.rs:244:13
+    |
+244 | /             Artifact::new(
+245 | |                 if change == 5 { "err" } else { "out" }.into(),
+246 | |                 project,
+247 | |                 if change == 1 { "other" } else { "graph" }.into(),
+...   |
+255 | |             .unwrap(),
+    | |_____________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/fact.rs:613:9
+    |
+613 |         EvidenceRef::new(id.into(), kind).unwrap()
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/fact.rs:617:9
+    |
+617 |         Producer::new("codegraph".into(), "v1".into(), "run-1".into()).unwrap()
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/fact.rs:621:9
+    |
+621 | /         FactAssertion::candidate(
+622 | |             "fact-1".into(),
+623 | |             project(),
+624 | |             "graph-1".into(),
+...   |
+632 | |         .unwrap()
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/fact.rs:636:9
+    |
+636 | /         VerificationReceipt::new(
+637 | |             "receipt-1".into(),
+638 | |             fact.assertion_id().into(),
+639 | |             fact.project().clone(),
+...   |
+646 | |         .unwrap()
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/fact.rs:651:20
+    |
+651 |           let fact = FactAssertion::candidate(
+    |  ____________________^
+652 | |             "fact".into(),
+653 | |             project(),
+654 | |             "g".into(),
+...   |
+665 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/fact.rs:687:24
+    |
+687 |         let accepted = GraphWriter.accept(fact.clone(), receipt(&fact)).unwrap();
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/fact.rs:713:24
+    |
+713 |           let rejected = GraphWriter
+    |  ________________________^
+714 | |             .reject(candidate(), "not enough evidence".into())
+715 | |             .unwrap();
+    | |_____________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/fact.rs:720:24
+    |
+720 |           let accepted = GraphWriter
+    |  ________________________^
+721 | |             .accept(fact.clone(), receipt(&fact))
+722 | |             .unwrap()
+    | |_____________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/fact.rs:729:23
+    |
+729 |           let expired = GraphWriter
+    |  _______________________^
+730 | |             .expire(accepted, "snapshot expired".into())
+731 | |             .unwrap();
+    | |_____________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/fact.rs:755:24
+    |
+755 |           let accepted = GraphWriter
+    |  ________________________^
+756 | |             .accept(fact.clone(), receipt(&fact))
+757 | |             .unwrap()
+    | |_____________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/fact.rs:823:13
+    |
+823 |             GraphWriter.reject(self, "test".into()).unwrap()
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/graph_version.rs:402:9
+    |
+402 | /         GraphVersion::new(
+403 | |             format!("graph-{generation}"),
+404 | |             project(head, working),
+405 | |             generation,
+...   |
+411 | |         .unwrap()
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/graph_version.rs:416:21
+    |
+416 |         let cache = GraphSnapshotCache::new(version(1, "head", "dirty"), 10, Some(20)).unwrap();
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/graph_version.rs:433:21
+    |
+433 |           let delta = GraphDelta::new(
+    |  _____________________^
+434 | |             version(1, "old", "dirty"),
+435 | |             version(2, "new", "dirty"),
+436 | |             vec!["node.b".into()],
+...   |
+444 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `expect()` on a `Result` value
+   --> crates/domain/src/identity.rs:376:9
+    |
+376 | /         NodeIdentityInput::new(
+377 | |             project,
+378 | |             "typescript".into(),
+379 | |             "function".into(),
+...   |
+387 | |         .expect("valid identity fixture")
+    | |_________________________________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#expect_used
+    = note: `-D clippy::expect-used` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::expect_used)]`
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/identity.rs:433:22
+    |
+433 |         let source = NodeId::from_digest("a".repeat(64)).unwrap();
+    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/identity.rs:434:22
+    |
+434 |         let target = NodeId::from_digest("b".repeat(64)).unwrap();
+    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `expect()` on a `Result` value
+   --> crates/domain/src/identity.rs:435:21
+    |
+435 |           let first = EdgeIdentityInput::new(
+    |  _____________________^
+436 | |             source.clone(),
+437 | |             target.clone(),
+438 | |             "calls".into(),
+...   |
+441 | |         .expect("valid edge fixture");
+    | |_____________________________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#expect_used
+
+error: used `expect()` on a `Result` value
+   --> crates/domain/src/identity.rs:442:22
+    |
+442 |           let second = EdgeIdentityInput::new(source, target, "calls".into(), "parameter:1".into())
+    |  ______________________^
+443 | |             .expect("valid edge fixture");
+    | |_________________________________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#expect_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/identity.rs:449:20
+    |
+449 |         let node = NodeId::from_digest("a".repeat(64)).unwrap();
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: empty String is being created manually
+   --> crates/domain/src/identity.rs:450:68
+    |
+450 |         assert!(EdgeIdentityInput::new(node.clone(), node.clone(), "".into(), "".into()).is_err());
+    |                                                                    ^^^^^^^^^ help: consider using: `String::new()`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#manual_string_new
+
+error: empty String is being created manually
+   --> crates/domain/src/identity.rs:450:79
+    |
+450 |         assert!(EdgeIdentityInput::new(node.clone(), node.clone(), "".into(), "".into()).is_err());
+    |                                                                               ^^^^^^^^^ help: consider using: `String::new()`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#manual_string_new
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/integration_decision.rs:126:9
+    |
+126 | /         TaskSpec::new(
+127 | |             TaskId::new("task").unwrap(),
+128 | |             project(),
+129 | |             "graph".into(),
+...   |
+138 | |         .unwrap()
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/integration_decision.rs:127:13
+    |
+127 |             TaskId::new("task").unwrap(),
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/integration_decision.rs:141:9
+    |
+141 | /         Artifact::new(
+142 | |             id.into(),
+143 | |             project,
+144 | |             graph.into(),
+...   |
+152 | |         .unwrap()
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/integration_decision.rs:162:23
+    |
+162 |           let command = CheckCommand::new(
+    |  _______________________^
+163 | |             "fixture".into(),
+164 | |             vec![],
+165 | |             ".".into(),
+...   |
+173 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/integration_decision.rs:174:23
+    |
+174 |           let binding = CheckRunBinding::new(
+    |  _______________________^
+175 | |             run.into(),
+176 | |             task.clone(),
+177 | |             Lease::issue(task.id().clone(), WorkerId::new("worker").unwrap(), 1, 10).unwrap(),
+...   |
+184 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/integration_decision.rs:177:13
+    |
+177 |             Lease::issue(task.id().clone(), WorkerId::new("worker").unwrap(), 1, 10).unwrap(),
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/integration_decision.rs:177:45
+    |
+177 |             Lease::issue(task.id().clone(), WorkerId::new("worker").unwrap(), 1, 10).unwrap(),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/integration_decision.rs:188:9
+    |
+188 | /         ExecutionReceipt::new(
+189 | |             binding,
+190 | |             "host".into(),
+191 | |             snapshot.clone(),
+...   |
+219 | |         .unwrap()
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/integration_decision.rs:232:22
+    |
+232 |         let policy = RequiredChecks::new(vec!["lint".into(), "test".into()]).unwrap();
+    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/integration_decision.rs:233:24
+    |
+233 |           let decision = IntegrationDecision::new(
+    |  ________________________^
+234 | |             task.clone(),
+235 | |             candidate.clone(),
+236 | |             policy.clone(),
+...   |
+244 | |         .unwrap();
+    | |_________________^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/integration_decision.rs:260:22
+    |
+260 |         let policy = RequiredChecks::new(vec!["test".into()]).unwrap();
+    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/integration_decision.rs:297:21
+    |
+297 |         let extra = RequiredChecks::new(vec!["test".into(), "lint".into()]).unwrap();
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/lib.rs:416:18
+    |
+416 |         let id = TaskId::new("task").unwrap();
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: used `unwrap()` on a `Result` value
+   --> crates/domain/src/lib.rs:433:26
+    |
+433 |         let dependency = TaskId::new("parent").unwrap();
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: if this value is an `Err`, it will panic
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#unwrap_used
+
+error: could not compile `graph-domain` (lib test) due to 404 previous errors

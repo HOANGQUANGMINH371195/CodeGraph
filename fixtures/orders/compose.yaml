@@ -1,0 +1,20 @@
+services:
+  orders:
+    build: .
+    environment:
+      SERVICE: orders
+      BIND: 0.0.0.0
+      DB_PATH: /data/orders.db
+      WORKER_URL: http://notifications:8081
+    ports: ["127.0.0.1:8080:8080"]
+    volumes: ["orders-data:/data"]
+  notifications:
+    build: .
+    environment:
+      SERVICE: notifications
+      BIND: 0.0.0.0
+      DB_PATH: /data/notifications.db
+    volumes: ["notification-data:/data"]
+volumes:
+  orders-data:
+  notification-data:

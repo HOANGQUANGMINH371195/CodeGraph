@@ -1,0 +1,5 @@
+/target/
+/.harness/
+*.db-wal
+*.db-shm
+

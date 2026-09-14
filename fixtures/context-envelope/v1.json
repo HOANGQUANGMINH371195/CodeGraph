@@ -1,0 +1,127 @@
+{
+  "schema_version": "project-graph/context/v1",
+  "project": {
+    "repository_id": "orders",
+    "worktree_id": "main",
+    "git_head": "head",
+    "working_tree_fingerprint": "tree",
+    "config_hash": "config",
+    "ignore_policy_version": "ignore-v1"
+  },
+  "graph_version": "graph-v1",
+  "revision": "head",
+  "view": "flow",
+  "query": "How does POST /orders reach the database?",
+  "source_is_untrusted": true,
+  "nodes": [
+    {
+      "id": "route:post-orders",
+      "kind": "route",
+      "name": "POST /orders",
+      "provenance": "codegraph",
+      "resolution": "resolved",
+      "source_derived": true,
+      "evidence_ids": ["ev-route"]
+    },
+    {
+      "id": "function:orders-controller",
+      "kind": "function",
+      "name": "createOrder",
+      "provenance": "resolver",
+      "resolution": "resolved",
+      "source_derived": true,
+      "evidence_ids": ["ev-handler"]
+    }
+  ],
+  "edges": [
+    {
+      "from": "route:post-orders",
+      "to": "function:orders-controller",
+      "kind": "route_handles",
+      "provenance": "resolver",
+      "resolution": "resolved",
+      "source_derived": true,
+      "evidence_ids": ["ev-route", "ev-handler"]
+    }
+  ],
+  "code_slices": [
+    {
+      "path": "src/http.ts",
+      "start": 1,
+      "end": 5,
+      "language": "typescript",
+      "content": "app.post('/orders', createOrder);",
+      "evidence_ids": ["ev-route"]
+    }
+  ],
+  "evidence": [
+    {
+      "schema_version": 1,
+      "id": "ev-route",
+      "project": {
+        "repository_id": "orders",
+        "worktree_id": "main",
+        "git_head": "head",
+        "working_tree_fingerprint": "tree",
+        "config_hash": "config",
+        "ignore_policy_version": "ignore-v1"
+      },
+      "graph_version": "graph-v1",
+      "path": "src/http.ts",
+      "content_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "start_line": 1,
+      "end_line": 5,
+      "analysis_run": "run-v1"
+    },
+    {
+      "schema_version": 1,
+      "id": "ev-handler",
+      "project": {
+        "repository_id": "orders",
+        "worktree_id": "main",
+        "git_head": "head",
+        "working_tree_fingerprint": "tree",
+        "config_hash": "config",
+        "ignore_policy_version": "ignore-v1"
+      },
+      "graph_version": "graph-v1",
+      "path": "src/orders.ts",
+      "content_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "start_line": 7,
+      "end_line": 15,
+      "analysis_run": "run-v1"
+    }
+  ],
+  "coverage": {
+    "status": "partial",
+    "unknowns": [
+      {
+        "code": "dynamic_dispatch",
+        "reason": "The selected adapter cannot resolve a computed handler.",
+        "subject": "function:orders-controller",
+        "path": "src/orders.ts",
+        "line": 12
+      }
+    ]
+  },
+  "budget": {
+    "max_nodes": 40,
+    "max_edges": 80,
+    "max_source_ranges": 20,
+    "max_source_bytes": 100000,
+    "max_traversal_depth": 5,
+    "max_serialized_bytes": 18000,
+    "max_characters": 16000,
+    "max_tokens": 4000,
+    "tokenizer": "project-tokenizer-v1",
+    "emitted_nodes": 2,
+    "emitted_edges": 1,
+    "emitted_source_ranges": 1,
+    "emitted_source_bytes": 42,
+    "emitted_serialized_bytes": 3200,
+    "emitted_characters": 2800,
+    "emitted_tokens": 700,
+    "truncated": false
+  },
+  "extensions": {}
+}

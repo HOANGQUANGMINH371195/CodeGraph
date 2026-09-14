@@ -1,0 +1,47 @@
+   Compiling graph-execution v0.1.0 (/home/minh/projects/project-graph-agent/crates/execution)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.47s
+     Running tests/sandbox.rs (target/debug/deps/sandbox-2ed7c74ba795b28c)
+
+running 5 tests
+
+thread 'sandbox_requirement::unavailable_required_backend_fails' (2130674) panicked at crates/execution/tests/support/sandbox_requirement.rs:14:13:
+required sandbox capability unavailable: sandbox backend is unsupported or unavailable
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+sandbox integration skipped: sandbox backend is unsupported or unavailable
+test sandbox_requirement::unavailable_optional_backend_is_explicitly_skipped ... ok
+test sandbox_requirement::unavailable_required_backend_fails - should panic ... ok
+test sandbox_rejects_executable_outside_declared_root_before_spawn ... ok
+test sandbox_plan_is_private_and_allow_list_fails_closed ... ok
+test sandbox_fixture_sees_declared_mount_and_not_masked_host_temp ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.59s
+
+   Compiling graph-execution v0.1.0 (/home/minh/projects/project-graph-agent/crates/execution)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.01s
+     Running tests/rpc_fixture.rs (target/debug/deps/rpc_fixture-3afe253bae784557)
+
+running 16 tests
+test publication::reopened_rpc_outputs_are_reverified_without_new_authority_or_writes ... ok
+test publication::failed_stderr_preserves_verified_stdout_and_retries_without_spawning_again ... ok
+test rejected_request_environment_setup_and_precancel_leave_ledger_untouched ... ok
+sandbox integration skipped: sandbox backend is unsupported or unavailable
+test sandbox_requirement::unavailable_optional_backend_is_explicitly_skipped ... ok
+
+thread 'sandbox_requirement::unavailable_required_backend_fails' (2131053) panicked at crates/execution/tests/support/sandbox_requirement.rs:14:13:
+required sandbox capability unavailable: sandbox backend is unsupported or unavailable
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test sandbox_requirement::unavailable_required_backend_fails - should panic ... ok
+test host_launches_exact_context_and_reopen_does_not_spawn_again ... ok
+test recording_error_after_spawn_failure_keeps_original_os_error ... ok
+test cancellation_after_durable_claim_does_not_spawn_or_reset_claim ... ok
+test publication::ambiguous_final_commit_reconciles_original_receipt_after_reopen ... ok
+test publication::malformed_and_truncated_output_publish_evidence_without_upgrading_completion ... ok
+test sandboxed_rpc_allow_list_fails_before_register_or_spawn ... ok
+test sandboxed_rpc_launch_uses_same_supervisor_and_declared_mount ... ok
+test bound_launch_preserves_exact_spawn_through_premature_finish_exit_and_cancel ... ok
+test wrong_hash_and_symlink_escape_fail_before_registration ... ok
+test spawn_failure_consumes_claim_across_reopen ... ok
+test recording_error_returns_owned_child_and_never_retries_spawn ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.69s
+

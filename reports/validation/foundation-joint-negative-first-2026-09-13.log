@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "ok": true,
+  "packages": 8,
+  "declared_dependencies": 49,
+  "errors": [],
+  "metadata_sha256": "95bdafb5345344356a56d68264df2bdcb1de09d3fcea9548ba1fe267c37eadbd",
+  "scope": "Declared direct dependencies, including optional, build, dev and target-specific declarations; not source-level or transitive runtime isolation."
+}
+✔ real workspace satisfies declared architecture (20.022873ms)
+✔ JSON decoding is allowed in protocol but not domain or application (0.341989ms)
+✔ YAML and SQL parsing stay in system adapter, which cannot acquire database or network dependencies (0.396784ms)
+✔ source snapshot hashing stays in the source adapter boundary (0.128257ms)
+✔ CLI composes system adapter without reversing protocol or domain dependencies (0.216381ms)
+✔ CLI can name domain contracts but domain cannot acquire CLI dependencies (0.154218ms)
+✔ rejects reverse, renamed, optional, target and build dependencies (0.226867ms)
+✔ recognizes dependency package name rather than alias (0.131428ms)
+✔ rejects impersonated internal packages and unreviewed external origins (0.260498ms)
+✔ new, missing and malformed workspace members fail closed (0.563277ms)
+✔ dev allowances cannot leak into production or build dependencies (0.18888ms)
+✔ execution composition adapters remain dev-only (0.182087ms)
+✔ missing executable is a failed probe, not an exception (0.761042ms)
+✔ timeout and nonzero exit cannot report readiness (0.382768ms)
+✔ probes use bounded subprocesses without a shell (0.312234ms)
+✔ fingerprints dirty tracked bytes, untracked files, deletion and link identity (96.338355ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 170.181285
+✔ POST order commits DB/outbox, delivery crosses HTTP and deduplicates retries (54.796477ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 135.158611
+   Compiling graph-execution v0.1.0 (/home/minh/projects/project-graph-agent/crates/execution)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.32s
+     Running unittests src/lib.rs (target/debug/deps/graph_application-ee2dac36e3760ea6)
+
+running 21 tests
+test admission::tests::dedup_survives_completion_and_deadline_or_stop_never_refunds_slots ... ok
+test admission::tests::binding_is_one_to_one_idempotent_and_retained_after_terminal ... ok
+test admission::tests::descendants_share_limits_and_parent_no_dispatch_does_not_release_children ... ok
+test admission::tests::late_child_binding_uses_retained_parent_identity_after_parent_terminal ... ok
+test admission::tests::late_bind_after_stop_reconciles_without_spawning_or_resurrecting ... ok
+test admission::tests::malformed_limits_and_requests_do_not_consume_budget ... ok
+test artifact::ingestion_tests::writer_success_is_independently_checked_before_returning_receipt ... ok
+test fingerprint::tests::environment_is_order_independent_unambiguous_and_validated ... ok
+test fact::tests::graph_writer_use_case_only_persists_domain_accepted_marker ... ok
+test identity::tests::edge_id_is_relation_scoped_and_discriminator_aware ... ok
+test identity::tests::length_prefixing_prevents_delimiter_field_collisions ... ok
+test fingerprint::tests::command_matches_independent_golden_and_binds_every_field ... ok
+test admission::tests::root_exclusion_and_parent_lineage_are_checked_before_replay ... ok
+test source::identity_tests::invalid_binding_metadata_is_rejected ... ok
+test identity::tests::node_id_is_byte_stable_and_snapshot_independent ... ok
+test source::identity_tests::mismatched_analysis_run_is_rejected_before_source_read ... ok
+test source::identity_tests::authority_failure_is_fail_closed_and_does_not_read_source ... ok
+test source::identity_tests::valid_snapshot_and_registered_run_are_required_before_source_read ... ok
+test identity::tests::node_id_changes_for_symbol_identity_fields_but_not_body ... ok
+test source::identity_tests::authority_binding_mismatch_is_rejected_before_run_lookup_or_read ... ok
+test source::identity_tests::missing_analysis_run_is_rejected_before_source_read ... ok
+
+test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/deployment_context.rs (target/debug/deps/deployment_context-55d220f686036def)
+
+running 8 tests
+test exact_and_over_caps_include_the_full_reachable_component_without_flags ... ok
+test depth_frontier_omissions_set_only_depth_flag ... ok
+test cycles_and_self_links_are_emitted_once_and_disconnected_facts_are_excluded ... ok
+test invalid_limits_and_unknown_seed_return_domain_errors ... ok
+test node_and_edge_caps_require_both_caps_for_new_endpoints ... ok
+test selects_exact_directional_neighborhoods_in_bfs_edge_order ... ok
+test zero_edge_budget_is_seed_only_and_sets_budget_flag ... ok
+test repeated_selection_is_deterministic ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/source_capture.rs (target/debug/deps/source_capture-47f8fef5c256c7fa)
+
+running 9 tests
+test captures_once_with_the_source_bound_and_fresh_full_file_evidence ... ok
+test capture_identity_matches_independent_encoding_and_resists_field_boundary_collisions ... ok
+test identical_content_ignores_old_locator_id_range_and_hash ... ok
+test empty_analysis_run_is_invalid_before_any_read ... ok
+test propagates_reader_errors_and_rejects_invalid_text ... ok
+test rejects_reader_output_over_source_budget_even_when_reader_lies ... ok
+test slice_limit_applies_to_the_entire_capture ... ok
+test changing_each_scope_version_path_and_run_field_changes_the_capture_id ... ok
+test final_newline_does_not_create_a_phantom_line ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/graph_domain-9e40d84ecf179bfc)
+
+running 36 tests
+test checks::tests::duplicate_and_extra_reports_cannot_be_hidden_by_order ... ok
+test checks::tests::configuration_cannot_pass_vacuously_or_hide_duplicate_requirements ... ok
+test checks::tests::only_passed_with_matching_candidate_and_evidence_satisfies_policy ... ok
+test context_pack::tests::capability_grant_is_time_bounded_and_deduplicated ... ok
+test context_pack::tests::claim_bundle_keeps_verified_and_heuristic_candidates_out_of_acceptance ... ok
+test context_pack::tests::scope_rejects_empty_duplicate_and_unsafe_selectors ... ok
+test execution::tests::zero_exit_needs_reap_both_complete_streams_and_cleanup ... ok
+test context_pack::tests::unknown_claim_line_and_content_label_are_bounded ... ok
+test execution::tests::stop_reason_cannot_be_erased_by_later_zero_exit ... ok
+test fact::tests::acceptance_requires_exact_scope_and_evidence ... ok
+test context_pack::tests::scope_is_canonical_and_path_matching_respects_boundaries ... ok
+test fact::tests::graph_writer_alone_produces_accepted_fact ... ok
+test fact::tests::candidate_is_validated_and_evidence_is_canonicalized ... ok
+test context_pack::tests::handoff_and_pack_reject_scope_widening_and_require_data_label ... ok
+test fact::tests::persistence_rehydration_requires_matching_decision ... ok
+test graph_version::tests::delta_requires_forward_same_worktree_and_canonical_lists ... ok
+test fact::tests::persisted_decisions_validate_their_payload ... ok
+test graph_version::tests::cache_distinguishes_source_change_and_expiry ... ok
+test fact::tests::terminal_state_machine_is_explicit_and_one_way ... ok
+test identity::tests::edge_id_is_relation_scoped_and_discriminator_aware ... ok
+test identity::tests::identity_material_exposes_path_signature_and_body_separately ... ok
+test identity::tests::identity_material_is_snapshot_independent_and_not_line_only ... ok
+test identity::tests::invalid_node_inputs_and_ids_fail_closed ... ok
+test integration_decision::tests::exact_unique_passed_receipts_are_required ... ok
+test rpc_launch::tests::connection_rejects_bad_labels_and_limits_but_not_adapter_specific_caps ... ok
+test identity::tests::edge_identity_rejects_empty_kind_and_control_text ... ok
+test rpc_launch::tests::complete_description_identity_is_preserved_without_minting_authority ... ok
+test rpc_launch::tests::launch_rejects_mismatched_task_lease_and_repository_policy ... ok
+test integration_decision::tests::missing_duplicate_extra_or_failed_receipt_cannot_form_decision ... ok
+test rpc_launch::tests::process_validation_is_shared_without_changing_closed_stdin_checks ... ok
+test rpc_terminal::tests::missing_artifacts_are_allowed_only_for_noncomplete_streams ... ok
+test rpc_terminal::tests::output_run_and_artifact_linkage_cannot_cross_snapshots_or_streams ... ok
+test rpc_terminal::tests::rejects_nonspawn_and_inconsistent_terminal_process_claims ... ok
+test rpc_terminal::tests::timing_pending_and_input_bounds_do_not_silently_normalize ... ok
+test rpc_terminal::tests::valid_receipt_keeps_uncertainty_even_after_zero_exit_and_redacts_debug ... ok
+test tests::rejects_self_and_duplicate_dependencies ... ok
+
+test result: ok. 36 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/deployment.rs (target/debug/deps/deployment-76668564880e94e2)
+
+running 16 tests
+test accepts_nested_citation_ranges_but_rejects_unknown_lines_outside_root ... ok
+test edge_citations_cannot_cross_scope_or_reuse_node_identity ... ok
+test empty_graph_is_a_valid_explicit_replacement ... ok
+test accepts_only_the_three_declared_edge_shapes ... ok
+test invalid_errors_are_static_and_do_not_echo_untrusted_identifiers ... ok
+test rejects_conflicting_content_for_a_citation_id_including_the_root ... ok
+test rejects_citations_outside_every_source_scope_dimension ... ok
+test rejects_invalid_mount_targets_and_mount_metadata_on_other_edges ... ok
+test rejects_duplicate_edges_using_the_full_edge_identity ... ok
+test rejects_invalid_node_and_unknown_text ... ok
+test rejects_duplicate_node_ids ... ok
+test rejects_missing_and_mistyped_edge_endpoints ... ok
+test valid_graph_exposes_immutable_domain_data ... ok
+test rejects_empty_control_and_oversized_adapter_fields ... ok
+test rejects_collection_budget_overflows ... ok
+test exact_collection_limits_accept_distinct_valid_graph_data ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.34s
+
+     Running tests/sql_link.rs (target/debug/deps/sql_link-6b2e5c6cd718b6fd)
+
+running 3 tests
+test rejects_non_full_sources_mixed_snapshot_duplicate_ids_and_invalid_extent ... ok
+test candidate_graph_is_scoped_and_explicitly_structural ... ok
+test rejects_target_path_mismatch_partial_target_and_statement_gap ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/wire_parsing.rs (target/debug/deps/wire_parsing-66fb99a10a51500a)
+
+running 7 tests
+test assertions ... ok
+test claims ... ok
+test evidence ... ok
+test origins ... ok
+test operations ... ok
+test capabilities ... ok
+test events ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/graph_execution-0961cd140151eabd)
+
+running 4 tests
+test linux::tests::missing_reader_is_failure_not_empty_complete_output ... ok
+test linux::tests::process_timeout_does_not_reclassify_post_reap_drain ... ok
+test linux::tests::retained_writer_prevents_eof_even_after_original_writer_closes ... ok
+test sandbox::tests::sandbox_path_rejects_parent_escape ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/attachment.rs (target/debug/deps/attachment-5d9ee62a70b0c284)
+
+running 2 tests
+test invalid_configuration_is_rejected_without_acquiring_a_child ... ok
+test missing_pipe_returns_same_owned_child_without_extracting_other_handles ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/composition.rs (target/debug/deps/composition-c71551f28c6dc7e8)
+
+running 5 tests
+test owned_execution_publishes_durable_receipt_without_cleanup_authority ... ok
+test spawn_failure_receipt_survives_reopen_without_regranting_claim ... ok
+test truncated_receipt_preserves_retained_prefix_without_becoming_complete ... ok
+test zero_exit_with_matching_git_target_cannot_grant_integration ... FAILED
+test timed_out_receipt_preserves_stop_and_empty_blob_dedup_after_reopen ... ok
+
+failures:
+
+---- zero_exit_with_matching_git_target_cannot_grant_integration stdout ----
+
+thread 'zero_exit_with_matching_git_target_cannot_grant_integration' (2122123) panicked at crates/execution/tests/composition.rs:235:13:
+assertion `left == right` failed
+  left: Reaped { exit_code: Some(64) }
+ right: Reaped { exit_code: Some(0) }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    zero_exit_with_matching_git_target_cannot_grant_integration
+
+test result: FAILED. 4 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.62s
+
+error: test failed, to rerun pass `-p graph-execution --test composition`

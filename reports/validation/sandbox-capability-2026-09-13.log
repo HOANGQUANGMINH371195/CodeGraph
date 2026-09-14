@@ -1,0 +1,12 @@
+   Compiling graph-store v0.1.0 (/home/minh/projects/project-graph-agent/crates/store)
+   Compiling graph-execution v0.1.0 (/home/minh/projects/project-graph-agent/crates/execution)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.82s
+     Running tests/sandbox.rs (target/debug/deps/sandbox-2ed7c74ba795b28c)
+
+running 3 tests
+test sandbox_rejects_executable_outside_declared_root_before_spawn ... ok
+test sandbox_plan_is_private_and_allow_list_fails_closed ... ok
+test sandbox_fixture_sees_declared_mount_and_not_masked_host_temp ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.94s
+

@@ -1,0 +1,70 @@
+{
+  "schema_version": "project-graph/context/v1",
+  "project": {
+    "repository_id": "orders",
+    "worktree_id": "main",
+    "git_head": "head",
+    "working_tree_fingerprint": "tree",
+    "config_hash": "config",
+    "ignore_policy_version": "ignore-v1"
+  },
+  "graph_version": "graph-v1",
+  "revision": "head",
+  "view": "flow",
+  "query": "trace orders",
+  "source_is_untrusted": true,
+  "nodes": [
+    {
+      "id": "a",
+      "kind": "service",
+      "name": "orders",
+      "provenance": "heuristic",
+      "resolution": "unresolved",
+      "source_derived": false,
+      "evidence_ids": []
+    },
+    {
+      "id": "b",
+      "kind": "database",
+      "name": "orders-db",
+      "provenance": "heuristic",
+      "resolution": "unresolved",
+      "source_derived": false,
+      "evidence_ids": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "a",
+      "to": "b",
+      "kind": "connects_to",
+      "provenance": "heuristic",
+      "resolution": "resolved",
+      "source_derived": false,
+      "evidence_ids": []
+    }
+  ],
+  "code_slices": [],
+  "evidence": [],
+  "coverage": {"status": "partial", "unknowns": []},
+  "budget": {
+    "max_nodes": 10,
+    "max_edges": 10,
+    "max_source_ranges": 10,
+    "max_source_bytes": 1000,
+    "max_traversal_depth": 2,
+    "max_serialized_bytes": 10000,
+    "max_characters": 10000,
+    "max_tokens": null,
+    "tokenizer": null,
+    "emitted_nodes": 2,
+    "emitted_edges": 1,
+    "emitted_source_ranges": 0,
+    "emitted_source_bytes": 0,
+    "emitted_serialized_bytes": 1000,
+    "emitted_characters": 100,
+    "emitted_tokens": null,
+    "truncated": false
+  },
+  "extensions": {}
+}

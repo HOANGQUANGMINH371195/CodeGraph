@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "kind": "authored_sql_ground_truth",
+  "scope": "Fixture expectations, not extracted graph facts or runtime proof",
+  "source": {"path":"src/store.mjs","sha256":"fe47596178e6f0386c96b6b99246976d0f2ee97b247b916df3a8b032c4912851"},
+  "queries": [
+    {"path":"sql/schema.sql","owner":"OrderStore::constructor","operation":"ddl","tables":["orders","outbox","notifications"],"sha256":"8f7b9074e54e70979a12d8e3ea8f2381a78e6c5679f2d440e92b8734a1213215"},
+    {"path":"sql/begin.sql","owner":"OrderStore::createOrder","operation":"begin","tables":[],"sha256":"66686b4b49847a0a5fa66ccd2f2909d8f2e1dfd4b76628cbcc981139069aacc7"},
+    {"path":"sql/insert-order.sql","owner":"OrderStore::createOrder","operation":"insert","tables":["orders"],"sha256":"5d560bd3b835cb512b17b95657d5e5f092eeaa5bf9fa9070657c14e47454f1d9"},
+    {"path":"sql/enqueue.sql","owner":"OrderStore::createOrder","operation":"insert","tables":["outbox"],"sha256":"c0ede751cbeed6e8ff05484ace2c408d4d239e8b9a297e380e923e75cbeeb03f"},
+    {"path":"sql/commit.sql","owner":"OrderStore::createOrder","operation":"commit","tables":[],"sha256":"e83e8c1f4ad612a5bd92067c29bdb9b1597fd541ebed41026079aabd6a4a5bf3"},
+    {"path":"sql/rollback.sql","owner":"OrderStore::createOrder","operation":"rollback","tables":[],"sha256":"3c41bb5fdf19c0e14c34a58b7dd7ee6c6a1ee9fb70b77b5ce0fe2788a689c8a8"},
+    {"path":"sql/pending.sql","owner":"OrderStore::pending","operation":"select","tables":["outbox"],"sha256":"f29af89861a5359e452a3058642fa8fa15756b3eca24b9d7d760f966261e03e6"},
+    {"path":"sql/ack.sql","owner":"OrderStore::acknowledge","operation":"update","tables":["outbox"],"sha256":"c0b3c47e24691e94935c385a0c6695eb270b4d77c969f7d71d371c53c964ffcd"},
+    {"path":"sql/consume.sql","owner":"OrderStore::consume","operation":"insert","tables":["notifications"],"sha256":"a05f52fee4aaf9e15aa646ca4bd9710ab6a09804eb8562e2a65c79aabc0ef6ec"},
+    {"path":"sql/order.sql","owner":"OrderStore::order","operation":"select","tables":["orders"],"sha256":"48c3efa4140c5e62eddfab6bf3fc1ab694062c439e3cc048e3d254c10df095a0"},
+    {"path":"sql/notifications.sql","owner":"OrderStore::notifications","operation":"select","tables":["notifications"],"sha256":"6e1b35ade6288829a32e046f9f33164b167d19c23908df5d68bb2dfe5ff0e08e"}
+  ]
+}
